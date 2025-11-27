@@ -6,6 +6,7 @@ import { OnboardingFlow } from '@/components/Onboarding';
 import { Profile } from '@/components/Profile';
 import { Search } from '@/components/Search';
 import {
+  clearCurrentUser,
   fetchProfilePicture,
   getCurrentUser,
   hasCompletedOnboarding,
@@ -13,7 +14,7 @@ import {
   setCurrentUser,
 } from '@/lib/store';
 import { LanguageProfile, OnboardingData } from '@/lib/types';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -124,7 +125,13 @@ export default function Home() {
                     {currentUser?.name?.split(' ')[0] || 'Friend'} <span className="inline-block animate-wave">👋</span>
                   </h1>
                 </div>
-                <div className="relative">
+                <button
+                  onClick={() => {
+                    clearCurrentUser();
+                    signOut({ callbackUrl: '/' });
+                  }}
+                  className="relative"
+                >
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-linear-to-br from-rausch to-arches p-0.5">
                     <div className="w-full h-full rounded-full overflow-hidden bg-white">
                       {currentUserPic || currentUser?.profilePictureUrl ? (
@@ -141,7 +148,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-babu rounded-full border-2 border-white" />
-                </div>
+                </button>
               </div>
               <p className="text-[#717171] text-sm mt-3">
                 Find language partners to practice with

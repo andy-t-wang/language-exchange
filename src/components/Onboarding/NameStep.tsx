@@ -9,7 +9,6 @@ interface NameStepProps {
 
 export function NameStep({ onNext, initialValue = '' }: NameStepProps) {
   const [name, setName] = useState(initialValue);
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,68 +21,59 @@ export function NameStep({ onNext, initialValue = '' }: NameStepProps) {
     <div className="flex flex-col h-full overflow-hidden bg-white">
       <div className="flex-1 flex flex-col px-6 pt-8 min-h-0 overflow-y-auto">
         {/* Hero illustration */}
-        <div className="flex justify-center mb-8 animate-fade-in">
+        <div className="flex justify-center mb-8">
           <div className="relative">
-            <div className="w-28 h-28 rounded-full bg-linear-to-br from-beach to-[#FFE4E1] flex items-center justify-center">
-              <span className="text-6xl">🌍</span>
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#FFE8E8] to-[#FFD6D6] flex items-center justify-center">
+              <span className="text-5xl">🌍</span>
             </div>
-            <div className="absolute -bottom-1 -right-1 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center">
-              <span className="text-2xl">👋</span>
+            <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center border border-[#EBEBEB]">
+              <span className="text-xl">👋</span>
             </div>
           </div>
         </div>
 
         {/* Title section */}
-        <div className="text-center mb-10 animate-slide-up">
-          <h1 className="text-[28px] font-semibold text-[#222222] mb-3 tracking-tight">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold text-[#222222] mb-2">
             Welcome to Lingua
           </h1>
-          <p className="text-[#717171] text-base leading-relaxed">
-            Connect with language learners around the world and practice together
+          <p className="text-[#717171] text-sm leading-relaxed px-4">
+            Connect with language learners around the world
           </p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto animate-slide-up" style={{ animationDelay: '0.1s' }}>
-          <div className="relative">
+        <form onSubmit={handleSubmit} className="w-full max-w-xs mx-auto">
+          <div className="mb-2">
             <label
               htmlFor="name"
-              className={`absolute left-4 transition-all duration-200 pointer-events-none ${
-                isFocused || name
-                  ? 'top-2 text-xs text-[#717171]'
-                  : 'top-1/2 -translate-y-1/2 text-base text-[#717171]'
-              }`}
+              className="block text-sm font-medium text-[#222222] mb-2 text-center"
             >
-              Your name
+              What&apos;s your name?
             </label>
             <input
               id="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
+              placeholder="Enter your name"
               autoComplete="name"
-              className={`block w-full h-14 px-4 pt-5 pb-2 rounded-lg text-base border transition-all duration-200 bg-white ${
-                isFocused
-                  ? 'border-[#222222] ring-2 ring-[#222222]/10'
-                  : 'border-[#B0B0B0] hover:border-[#222222]'
-              }`}
+              autoFocus
+              className="block w-full h-12 px-4 rounded-xl text-base text-center border border-[#DDDDDD] bg-white placeholder:text-[#B0B0B0] focus:outline-none focus:border-[#222222] focus:ring-1 focus:ring-[#222222] transition-all"
             />
           </div>
-
-          <p className="mt-3 text-xs text-[#717171]">
-            This is how you&apos;ll appear to other language learners
+          <p className="text-xs text-[#717171] text-center">
+            This is how you&apos;ll appear to other learners
           </p>
         </form>
       </div>
 
       {/* Footer */}
-      <div className="p-6 pb-10 shrink-0 border-t border-[#EBEBEB]">
+      <div className="p-6 pb-8 shrink-0 border-t border-[#EBEBEB]">
         <button
           onClick={() => name.trim() && onNext(name.trim())}
           disabled={!name.trim()}
-          className="btn-airbnb w-full h-12 text-base disabled:cursor-not-allowed"
+          className="btn-airbnb w-full h-12 text-base disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continue
         </button>

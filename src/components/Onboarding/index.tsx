@@ -69,54 +69,22 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
   return (
     <div className="h-dvh flex flex-col bg-white overflow-hidden">
-      {/* Progress header - Airbnb style */}
-      <div className="px-6 pt-4 pb-2 shrink-0 border-b border-[#EBEBEB]">
-        {/* Step indicators */}
-        <div className="flex items-center justify-between mb-3">
-          {steps.map((s, index) => (
-            <div key={s} className="flex items-center">
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
-                  index < currentIndex
-                    ? 'bg-[#222222] text-white'
-                    : index === currentIndex
-                    ? 'bg-[#222222] text-white ring-4 ring-[#222222]/10'
-                    : 'bg-[#F7F7F7] text-[#717171]'
-                }`}
-              >
-                {index < currentIndex ? (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : (
-                  index + 1
-                )}
-              </div>
-              {index < steps.length - 1 && (
-                <div
-                  className={`w-8 h-0.5 mx-1 transition-colors duration-300 ${
-                    index < currentIndex ? 'bg-[#222222]' : 'bg-[#EBEBEB]'
-                  }`}
-                />
-              )}
-            </div>
-          ))}
+      {/* Simple progress bar */}
+      <div className="px-6 pt-4 pb-3 shrink-0">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-sm text-[#717171]">
+            Step {currentIndex + 1} of {steps.length}
+          </p>
+          <p className="text-sm font-medium text-[#222222]">
+            {stepLabels[step]}
+          </p>
         </div>
-
-        {/* Current step label */}
-        <p className="text-sm text-[#717171] text-center">
-          <span className="text-[#222222] font-semibold">{stepLabels[step]}</span>
-          {' '}&middot;{' '}
-          Step {currentIndex + 1} of {steps.length}
-        </p>
-      </div>
-
-      {/* Progress bar - thin accent line */}
-      <div className="h-1 bg-[#F7F7F7] shrink-0">
-        <div
-          className="h-full bg-linear-to-r from-rausch to-arches transition-all duration-500 ease-out"
-          style={{ width: `${progress}%` }}
-        />
+        <div className="h-1.5 bg-[#EBEBEB] rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[#222222] rounded-full transition-all duration-500 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
       {/* Step content */}
