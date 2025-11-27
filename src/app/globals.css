@@ -1,0 +1,215 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #222222;
+
+  /* Airbnb Design Tokens */
+  --airbnb-rausch: #FF5A5F;
+  --airbnb-babu: #00A699;
+  --airbnb-arches: #FC642D;
+  --airbnb-hof: #484848;
+  --airbnb-foggy: #767676;
+  --airbnb-beach: #FFCFCA;
+  --airbnb-light: #F7F7F7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Airbnb colors for Tailwind */
+  --color-rausch: #FF5A5F;
+  --color-babu: #00A699;
+  --color-arches: #FC642D;
+  --color-hof: #484848;
+  --color-foggy: #767676;
+  --color-beach: #FFCFCA;
+}
+
+/* Disable dark mode for this app */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Mobile optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+/* Fix for input elements */
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  min-height: 56px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Airbnb-style animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-wave {
+  animation: wave 2.5s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+/* Airbnb button styles */
+.btn-airbnb {
+  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-airbnb:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-airbnb:active {
+  transform: scale(0.98);
+}
+
+.btn-airbnb:disabled {
+  background: #DDDDDD;
+  color: #717171;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Airbnb input styles */
+.input-airbnb {
+  border: 1px solid #B0B0B0;
+  border-radius: 0.5rem;
+  padding: 1.25rem 1rem 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.input-airbnb:focus {
+  border-color: #222222;
+  box-shadow: 0 0 0 2px rgba(34, 34, 34, 0.1);
+  outline: none;
+}
+
+/* Airbnb card styles */
+.card-airbnb {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #EBEBEB;
+  transition: all 0.2s ease;
+}
+
+.card-airbnb:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(to right, #E61E4D, #D70466);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
