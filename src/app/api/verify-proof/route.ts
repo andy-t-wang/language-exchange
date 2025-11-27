@@ -5,6 +5,8 @@ import {
 } from "minikit-js-dev-preview";
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = 'edge';
+
 interface IRequestPayload {
   payload: ISuccessResult;
   action: string;

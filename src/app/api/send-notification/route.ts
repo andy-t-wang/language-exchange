@@ -1,6 +1,8 @@
 import { auth } from '@/auth';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 const WORLD_NOTIFICATION_URL = 'https://developer.worldcoin.org/api/v2/minikit/send-notification';
 
 // POST /api/send-notification - Send notification to a user
@@ -24,10 +26,20 @@ export async function POST(request: NextRequest) {
     }
 
     const appId = process.env.NEXT_PUBLIC_APP_ID;
+    const apiKey = process.env.DEV_PORTAL_API_KEY;
+
     if (!appId) {
       console.error('NEXT_PUBLIC_APP_ID not configured');
       return NextResponse.json(
         { error: 'App not configured for notifications' },
+        { status: 500 }
+      );
+    }
+
+    if (!apiKey) {
+      console.error('DEV_PORTAL_API_KEY not configured');
+      return NextResponse.json(
+        { error: 'API key not configured for notifications' },
         { status: 500 }
       );
     }
@@ -46,6 +58,7 @@ export async function POST(request: NextRequest) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify(notificationPayload),
     });

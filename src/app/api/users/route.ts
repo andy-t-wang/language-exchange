@@ -2,6 +2,8 @@ import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase-server';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 // GET /api/users - Get all users or search by language
 export async function GET(request: NextRequest) {
   try {

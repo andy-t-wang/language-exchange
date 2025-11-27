@@ -2,6 +2,8 @@ import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase-server';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 // GET /api/contacts - Get all contacts for the current user
 export async function GET() {
   try {
