@@ -116,7 +116,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
               {searchQuery ? 'Search Results' : 'Browse by Language'}
             </h2>
             <div className="grid grid-cols-2 gap-3">
-              {(searchQuery ? filteredLanguages : LANGUAGES.slice(0, 12)).map(
+              {(searchQuery ? filteredLanguages : LANGUAGES).map(
                 (lang, index) => (
                   <button
                     key={lang.code}
