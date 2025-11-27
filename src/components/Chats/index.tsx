@@ -9,7 +9,7 @@ interface ChatsProps {
 }
 
 const getCountryFlag = (countryCode: string): string => {
-  if (!countryCode || countryCode === "XX") return "🌍";
+  if (!countryCode || countryCode === "XX" || countryCode === "RU") return "🌍";
   const codePoints = countryCode
     .toUpperCase()
     .split("")
