@@ -1,12 +1,13 @@
 'use client';
 
 import { setLocale } from '@/i18n/actions';
-import { locales, localeNames, localeFlags, type Locale } from '@/i18n/config';
-import { useLocale } from 'next-intl';
+import { locales, localeFlags, type Locale } from '@/i18n/config';
+import { useLocale, useTranslations } from 'next-intl';
 import { useTransition, useState } from 'react';
 
 export function LocaleSwitcher() {
   const currentLocale = useLocale() as Locale;
+  const t = useTranslations('locales');
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,7 +28,7 @@ export function LocaleSwitcher() {
       >
         <div className="flex items-center gap-3">
           <span className="text-xl">{localeFlags[currentLocale]}</span>
-          <span className="font-medium text-[#222222]">{localeNames[currentLocale]}</span>
+          <span className="font-medium text-[#222222]">{t(currentLocale)}</span>
         </div>
         <svg
           className={`w-5 h-5 text-[#717171] transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -50,7 +51,7 @@ export function LocaleSwitcher() {
               }`}
             >
               <span className="text-xl">{localeFlags[locale]}</span>
-              <span className="font-medium text-[#222222]">{localeNames[locale]}</span>
+              <span className="font-medium text-[#222222]">{t(locale)}</span>
               {locale === currentLocale && (
                 <svg className="w-5 h-5 text-babu ml-auto" fill="currentColor" viewBox="0 0 20 20">
                   <path

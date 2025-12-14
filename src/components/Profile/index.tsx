@@ -15,10 +15,6 @@ const getLanguageFlag = (code: string): string => {
   return LANGUAGES.find((l) => l.code === code)?.flag || '🌐';
 };
 
-const getLanguageName = (code: string): string => {
-  return LANGUAGES.find((l) => l.code === code)?.name || code;
-};
-
 const getCountryFlag = (countryCode: string): string => {
   if (!countryCode || countryCode === 'XX') return '🌍';
   const codePoints = countryCode
@@ -33,6 +29,7 @@ type EditMode = 'none' | 'native' | 'learning';
 export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
   const t = useTranslations('profile');
   const tCommon = useTranslations('common');
+  const tLang = useTranslations('languages');
   const [profilePic, setProfilePic] = useState<string | null>(currentUser.profilePictureUrl || null);
   const [editMode, setEditMode] = useState<EditMode>('none');
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
@@ -138,7 +135,7 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
                 >
                   <span className="text-2xl">{lang.flag}</span>
                   <span className={`text-sm font-medium ${isSelected ? 'text-[#222222]' : 'text-hof'}`}>
-                    {lang.name}
+                    {tLang(lang.code)}
                   </span>
                   {isSelected && (
                     <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#222222] flex items-center justify-center">
@@ -227,7 +224,7 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E8F8F5] text-babu text-sm font-medium rounded-full"
                 >
                   <span>{getLanguageFlag(lang)}</span>
-                  {getLanguageName(lang)}
+                  {tLang(lang)}
                 </span>
               ))}
             </div>
@@ -254,7 +251,7 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FFF0ED] text-[#E61E4D] text-sm font-medium rounded-full"
                 >
                   <span>{getLanguageFlag(lang)}</span>
-                  {getLanguageName(lang)}
+                  {tLang(lang)}
                 </span>
               ))}
             </div>

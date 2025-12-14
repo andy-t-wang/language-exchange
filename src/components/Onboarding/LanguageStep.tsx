@@ -1,6 +1,7 @@
 'use client';
 
 import { LANGUAGES } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 interface LanguageStepProps {
@@ -16,6 +17,9 @@ export function LanguageStep({
   onBack,
   initialSelection = [],
 }: LanguageStepProps) {
+  const t = useTranslations('onboarding');
+  const tLang = useTranslations('languages');
+  const tCommon = useTranslations('common');
   const [selected, setSelected] = useState<string[]>(initialSelection);
 
   const toggleLanguage = (code: string) => {
@@ -39,10 +43,10 @@ export function LanguageStep({
             <span className="text-3xl">{isNative ? '🗣️' : '📚'}</span>
           </div>
           <h1 className="text-xl font-bold text-[#222222]">
-            {isNative ? 'Languages you speak' : 'Languages to learn'}
+            {isNative ? t('nativeLanguageStep.title') : t('learningLanguageStep.title')}
           </h1>
           <p className="text-[#717171] text-sm mt-1">
-            {isNative ? 'Select all that apply' : 'What would you like to practice?'}
+            {isNative ? t('nativeLanguageStep.subtitle') : t('learningLanguageStep.subtitle')}
           </p>
         </div>
 
@@ -73,7 +77,7 @@ export function LanguageStep({
               >
                 <span className="text-xl">{lang.flag}</span>
                 <span className={`text-sm font-medium ${isSelected ? 'text-[#222222]' : 'text-[#717171]'}`}>
-                  {lang.name}
+                  {tLang(lang.code)}
                 </span>
                 {isSelected && (
                   <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#222222] flex items-center justify-center">
@@ -95,14 +99,14 @@ export function LanguageStep({
             onClick={onBack}
             className="flex-1 h-12 rounded-xl border border-[#DDDDDD] text-[#222222] font-semibold hover:bg-[#F7F7F7] transition-colors"
           >
-            Back
+            {tCommon('back')}
           </button>
           <button
             onClick={() => onNext(selected)}
             disabled={selected.length === 0}
             className="flex-2 btn-airbnb h-12 text-base disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Continue
+            {tCommon('continue')}
           </button>
         </div>
       </div>

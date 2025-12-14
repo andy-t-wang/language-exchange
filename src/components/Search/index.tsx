@@ -14,6 +14,7 @@ interface SearchProps {
 
 export function Search({ onUserConnect, currentUser }: SearchProps) {
   const t = useTranslations('search');
+  const tLang = useTranslations('languages');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [results, setResults] = useState<LanguageProfile[]>([]);
@@ -22,7 +23,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
 
   const filteredLanguages = LANGUAGES.filter(
     (lang) =>
-      lang.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tLang(lang.code).toLowerCase().includes(searchQuery.toLowerCase()) ||
       lang.code.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -91,7 +92,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
             <div className="flex items-center gap-3 flex-1 bg-[#F7F7F7] px-4 py-3 rounded-xl">
               <span className="text-2xl">{selectedLang?.flag}</span>
               <span className="font-semibold text-[#222222]">
-                {selectedLang?.name}
+                {selectedLang ? tLang(selectedLang.code) : ''}
               </span>
             </div>
           </div>
@@ -127,7 +128,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
                     style={{ animationDelay: `${index * 0.03}s` }}
                   >
                     <span className="text-2xl">{lang.flag}</span>
-                    <span className="font-medium text-[#222222]">{lang.name}</span>
+                    <span className="font-medium text-[#222222]">{tLang(lang.code)}</span>
                   </button>
                 )
               )}
@@ -205,7 +206,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
             </div>
             <h3 className="font-semibold text-[#222222] text-lg mb-2">{t('noOneFound')}</h3>
             <p className="text-[#717171] text-center text-sm max-w-xs">
-              {t('noOneFoundDesc', { language: selectedLang?.name || '' })}
+              {t('noOneFoundDesc', { language: selectedLang ? tLang(selectedLang.code) : '' })}
             </p>
           </div>
         )}

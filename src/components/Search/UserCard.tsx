@@ -1,6 +1,10 @@
 "use client";
 
-import { fetchProfilePicture, saveContact, sendChatNotification } from "@/lib/store";
+import {
+  fetchProfilePicture,
+  saveContact,
+  sendChatNotification,
+} from "@/lib/store";
 import { LANGUAGES, LanguageProfile } from "@/lib/types";
 import { MiniKit } from "minikit-js-dev-preview";
 import { useTranslations } from "next-intl";
@@ -11,10 +15,6 @@ interface UserCardProps {
   currentUser?: LanguageProfile | null;
   onConnect: (user: LanguageProfile) => void;
 }
-
-const getLanguageName = (code: string): string => {
-  return LANGUAGES.find((l) => l.code === code)?.name || code;
-};
 
 const getLanguageFlag = (code: string): string => {
   return LANGUAGES.find((l) => l.code === code)?.flag || "🌐";
@@ -30,7 +30,8 @@ const getCountryFlag = (countryCode: string): string => {
 };
 
 export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
-  const t = useTranslations('userCard');
+  const t = useTranslations("userCard");
+  const tLang = useTranslations("languages");
   const [profilePic, setProfilePic] = useState<string | null>(
     user.profilePictureUrl || null
   );
@@ -48,17 +49,21 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
   // Generate personalized intro message
   const getIntroMessage = (): string => {
     // Find a language they speak that the current user is learning
-    const targetLanguage = user.nativeLanguages.find(
-      (lang) => currentUser?.learningLanguages.includes(lang)
+    const targetLanguage = user.nativeLanguages.find((lang) =>
+      currentUser?.learningLanguages.includes(lang)
     );
 
     if (targetLanguage) {
-      return `Hey! I'm from Lingua and would love to learn ${getLanguageName(targetLanguage)} with you!`;
+      return `Hey! I'm from Lingua and would love to learn ${getLanguageFlag(
+        targetLanguage
+      )} with you!`;
     }
 
     // Fallback: use their first native language
     if (user.nativeLanguages.length > 0) {
-      return `Hey! I'm from Lingua and would love to practice ${getLanguageName(user.nativeLanguages[0])} with you!`;
+      return `Hey! I'm from Lingua and would love to practice ${getLanguageFlag(
+        user.nativeLanguages[0]
+      )} with you!`;
     }
 
     return "Hey! I'm from Lingua and would love to practice languages with you!";
@@ -129,7 +134,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
           disabled={isConnecting || !user.username}
           className="btn-airbnb px-5 py-2.5 text-sm shrink-0 disabled:opacity-50"
         >
-          {isConnecting ? t('connecting') : t('connect')}
+          {isConnecting ? t("connecting") : t("connect")}
         </button>
       </div>
 
@@ -138,7 +143,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
         {/* Speaks */}
         <div>
           <p className="text-xs font-medium text-[#717171] uppercase tracking-wide mb-2">
-            {t('native')}
+            {t("native")}
           </p>
           <div className="flex flex-wrap gap-2">
             {user.nativeLanguages.map((lang) => (
@@ -147,7 +152,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E8F8F5] text-babu text-sm font-medium rounded-full"
               >
                 <span>{getLanguageFlag(lang)}</span>
-                {getLanguageName(lang)}
+                {tLang(lang)}
               </span>
             ))}
           </div>
@@ -156,7 +161,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
         {/* Learning */}
         <div>
           <p className="text-xs font-medium text-[#717171] uppercase tracking-wide mb-2">
-            {t('learning')}
+            {t("learning")}
           </p>
           <div className="flex flex-wrap gap-2">
             {user.learningLanguages.map((lang) => (
@@ -165,7 +170,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FFF0ED] text-[#E61E4D] text-sm font-medium rounded-full"
               >
                 <span>{getLanguageFlag(lang)}</span>
-                {getLanguageName(lang)}
+                {tLang(lang)}
               </span>
             ))}
           </div>

@@ -18,10 +18,6 @@ const getCountryFlag = (countryCode: string): string => {
   return String.fromCodePoint(...codePoints);
 };
 
-const getLanguageName = (code: string): string => {
-  return LANGUAGES.find((l) => l.code === code)?.name || code;
-};
-
 const getLanguageFlag = (code: string): string => {
   return LANGUAGES.find((l) => l.code === code)?.flag || "🌐";
 };
@@ -32,6 +28,7 @@ interface ContactWithPic extends LanguageProfile {
 
 export function Chats({ currentUser }: ChatsProps) {
   const t = useTranslations('chats');
+  const tLang = useTranslations('languages');
   const [contacts, setContacts] = useState<ContactWithPic[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -176,7 +173,7 @@ export function Chats({ currentUser }: ChatsProps) {
                               className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#E8F8F5] text-babu text-xs font-medium rounded-full"
                             >
                               <span>{getLanguageFlag(lang)}</span>
-                              {getLanguageName(lang)}
+                              {tLang(lang)}
                             </span>
                           ))}
                         </div>
