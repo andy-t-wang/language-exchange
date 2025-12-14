@@ -3,12 +3,13 @@
 import { walletAuth } from "@/auth/wallet";
 import { useMiniKit } from "minikit-js-dev-preview/minikit-provider";
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const t = useTranslations("landing");
   const [isPending, setIsPending] = useState(false);
   const { isInstalled } = useMiniKit();
+  const hasAttemptedAuth = useRef(false);
 
   const handleLogin = useCallback(async () => {
     if (!isInstalled || isPending) {
@@ -23,22 +24,17 @@ export default function Home() {
     }
   }, [isInstalled, isPending]);
 
+  // Auto-trigger wallet auth when MiniKit is installed
   useEffect(() => {
-    const authenticate = async () => {
-      if (isInstalled && !isPending) {
-        setIsPending(true);
-        try {
-          // await walletAuth();
-        } catch (error) {
-          console.error("Auto wallet authentication error", error);
-        } finally {
-          setIsPending(false);
-        }
-      }
-    };
-
-    authenticate();
-  }, [isInstalled, isPending]);
+    if (isInstalled && !hasAttemptedAuth.current) {
+      hasAttemptedAuth.current = true;
+      setIsPending(true);
+      walletAuth().catch((error) => {
+        console.error("Auto wallet authentication error", error);
+        setIsPending(false);
+      });
+    }
+  }, [isInstalled]);
 
   return (
     <div className="min-h-dvh bg-white flex flex-col">
