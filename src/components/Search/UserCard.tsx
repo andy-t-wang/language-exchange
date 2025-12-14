@@ -3,6 +3,7 @@
 import { fetchProfilePicture, saveContact, sendChatNotification } from "@/lib/store";
 import { LANGUAGES, LanguageProfile } from "@/lib/types";
 import { MiniKit } from "minikit-js-dev-preview";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 interface UserCardProps {
@@ -29,6 +30,7 @@ const getCountryFlag = (countryCode: string): string => {
 };
 
 export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
+  const t = useTranslations('userCard');
   const [profilePic, setProfilePic] = useState<string | null>(
     user.profilePictureUrl || null
   );
@@ -127,7 +129,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
           disabled={isConnecting || !user.username}
           className="btn-airbnb px-5 py-2.5 text-sm shrink-0 disabled:opacity-50"
         >
-          {isConnecting ? "..." : "Chat"}
+          {isConnecting ? t('connecting') : t('connect')}
         </button>
       </div>
 
@@ -136,7 +138,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
         {/* Speaks */}
         <div>
           <p className="text-xs font-medium text-[#717171] uppercase tracking-wide mb-2">
-            Speaks
+            {t('native')}
           </p>
           <div className="flex flex-wrap gap-2">
             {user.nativeLanguages.map((lang) => (
@@ -154,7 +156,7 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
         {/* Learning */}
         <div>
           <p className="text-xs font-medium text-[#717171] uppercase tracking-wide mb-2">
-            Learning
+            {t('learning')}
           </p>
           <div className="flex flex-wrap gap-2">
             {user.learningLanguages.map((lang) => (

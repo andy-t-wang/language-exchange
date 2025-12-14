@@ -3,6 +3,7 @@
 import { searchUsersByLanguage, getUsers } from '@/lib/store';
 import { LANGUAGES, LanguageProfile } from '@/lib/types';
 import { Search as SearchIcon } from 'iconoir-react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 import { UserCard } from './UserCard';
 
@@ -12,6 +13,7 @@ interface SearchProps {
 }
 
 export function Search({ onUserConnect, currentUser }: SearchProps) {
+  const t = useTranslations('search');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [results, setResults] = useState<LanguageProfile[]>([]);
@@ -98,7 +100,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
             <SearchIcon width={20} height={20} className="text-[#717171] shrink-0" />
             <input
               type="text"
-              placeholder="Search for a language..."
+              placeholder={t('searchLanguage')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 h-full bg-transparent text-base outline-none placeholder:text-[#717171]"
@@ -113,7 +115,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
           // Language selection grid
           <div>
             <h2 className="text-xs font-semibold text-[#717171] uppercase tracking-wider mb-4">
-              {searchQuery ? 'Search Results' : 'Browse by Language'}
+              {searchQuery ? t('searchResults') : t('browseByLanguage')}
             </h2>
             <div className="grid grid-cols-2 gap-3">
               {(searchQuery ? filteredLanguages : LANGUAGES).map(
@@ -136,7 +138,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#EBEBEB] flex items-center justify-center">
                   <span className="text-3xl">🔍</span>
                 </div>
-                <p className="text-[#717171]">No languages found</p>
+                <p className="text-[#717171]">{t('noLanguagesFound')}</p>
               </div>
             )}
 
@@ -144,7 +146,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
             {!searchQuery && results.length > 0 && (
               <div className="mt-8">
                 <h2 className="text-xs font-semibold text-[#717171] uppercase tracking-wider mb-4">
-                  Language Partners Near You
+                  {t('partnersNearYou')}
                 </h2>
                 {isInitialLoading ? (
                   <div className="flex justify-center py-8">
@@ -175,14 +177,14 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
               <div className="absolute inset-0 rounded-full border-4 border-[#EBEBEB]" />
               <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-rausch animate-spin" />
             </div>
-            <p className="text-[#222222] font-medium">Finding language partners...</p>
-            <p className="text-[#717171] text-sm mt-1">This won&apos;t take long</p>
+            <p className="text-[#222222] font-medium">{t('findingPartners')}</p>
+            <p className="text-[#717171] text-sm mt-1">{t('wontTakeLong')}</p>
           </div>
         ) : results.length > 0 ? (
           // User results
           <div>
             <h2 className="text-xs font-semibold text-[#717171] uppercase tracking-wider mb-4">
-              {results.length} {results.length === 1 ? 'person' : 'people'} found
+              {t('peopleFound', { count: results.length })}
             </h2>
             <div className="space-y-4">
               {results.map((user) => (
@@ -201,9 +203,9 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
             <div className="w-20 h-20 mb-6 rounded-full bg-[#FFF0ED] flex items-center justify-center">
               <span className="text-4xl">🌍</span>
             </div>
-            <h3 className="font-semibold text-[#222222] text-lg mb-2">No one found yet</h3>
+            <h3 className="font-semibold text-[#222222] text-lg mb-2">{t('noOneFound')}</h3>
             <p className="text-[#717171] text-center text-sm max-w-xs">
-              No one is currently learning or speaks {selectedLang?.name}. Be the first to start a community!
+              {t('noOneFoundDesc', { language: selectedLang?.name || '' })}
             </p>
           </div>
         )}

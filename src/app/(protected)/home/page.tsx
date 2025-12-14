@@ -15,9 +15,11 @@ import {
 } from '@/lib/store';
 import { LanguageProfile, OnboardingData } from '@/lib/types';
 import { signOut, useSession } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const t = useTranslations('home');
   const { data: session } = useSession();
   const [isOnboarded, setIsOnboarded] = useState<boolean | null>(null);
   const [currentUser, setCurrentUserState] = useState<LanguageProfile | null>(null);
@@ -94,7 +96,7 @@ export default function Home() {
           <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-rausch animate-spin" />
         </div>
         {isSaving && (
-          <p className="text-[#717171] text-sm">Setting up your profile...</p>
+          <p className="text-[#717171] text-sm">{t('settingUp')}</p>
         )}
       </div>
     );
@@ -120,7 +122,7 @@ export default function Home() {
             <div className="px-5 pt-4 pb-5 bg-linear-to-b from-white to-[#FAFAFA] shrink-0">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-[#717171] mb-0.5">Welcome back,</p>
+                  <p className="text-sm font-medium text-[#717171] mb-0.5">{t('welcomeBack')}</p>
                   <h1 className="text-2xl font-bold text-[#222222]">
                     {currentUser?.name?.split(' ')[0] || 'Friend'} <span className="inline-block animate-wave">👋</span>
                   </h1>
@@ -151,7 +153,7 @@ export default function Home() {
                 </button>
               </div>
               <p className="text-[#717171] text-sm mt-3">
-                Find language partners to practice with
+                {t('findPartners')}
               </p>
             </div>
             <div className="flex-1 min-h-0 overflow-hidden">

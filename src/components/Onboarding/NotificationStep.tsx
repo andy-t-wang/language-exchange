@@ -31,7 +31,12 @@ export function NotificationStep({ onNext, onBack }: NotificationStepProps) {
         setStatus("granted");
         setTimeout(() => onNext(true), 1500);
       } else {
-        setStatus("denied");
+        if (result.finalPayload.error_code == "already_granted") {
+          setStatus("granted");
+          setTimeout(() => onNext(true), 1500);
+        } else {
+          setStatus("denied");
+        }
       }
     } catch (error) {
       console.error("Notification permission error:", error);

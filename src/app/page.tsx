@@ -2,9 +2,11 @@
 
 import { walletAuth } from "@/auth/wallet";
 import { useMiniKit } from "minikit-js-dev-preview/minikit-provider";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
+  const t = useTranslations("landing");
   const [isPending, setIsPending] = useState(false);
   const { isInstalled } = useMiniKit();
 
@@ -48,10 +50,10 @@ export default function Home() {
             <span className="text-3xl">🌍</span>
           </div>
           <h1 className="text-[32px] font-bold text-[#222222] tracking-tight">
-            Lingua
+            {t("title")}
           </h1>
           <p className="text-[#717171] text-lg mt-2 leading-relaxed max-w-[280px]">
-            Find language partners and practice together in World App
+            {t("subtitle")}
           </p>
         </div>
 
@@ -66,10 +68,10 @@ export default function Home() {
             </div>
             <div>
               <p className="font-semibold text-[#222222]">
-                Practice with natives
+                {t("feature1Title")}
               </p>
               <p className="text-[#717171] text-sm">
-                Chat with speakers of the language you&apos;re learning
+                {t("feature1Desc")}
               </p>
             </div>
           </div>
@@ -82,9 +84,9 @@ export default function Home() {
               <span className="text-2xl">🌐</span>
             </div>
             <div>
-              <p className="font-semibold text-[#222222]">25+ languages</p>
+              <p className="font-semibold text-[#222222]">{t("feature2Title")}</p>
               <p className="text-[#717171] text-sm">
-                From Spanish to Swahili, find your match
+                {t("feature2Desc")}
               </p>
             </div>
           </div>
@@ -98,10 +100,10 @@ export default function Home() {
             </div>
             <div>
               <p className="font-semibold text-[#222222]">
-                Verified humans only
+                {t("feature3Title")}
               </p>
               <p className="text-[#717171] text-sm">
-                World ID ensures real connections
+                {t("feature3Desc")}
               </p>
             </div>
           </div>
@@ -121,15 +123,15 @@ export default function Home() {
           {isPending ? (
             <span className="flex items-center justify-center gap-2">
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              Connecting...
+              {t("connecting")}
             </span>
           ) : (
-            "Get started"
+            t("getStarted")
           )}
         </button>
 
         <p className="text-center text-xs text-[#717171] mt-3 pt-2">
-          By continuing, you agree to our Terms & Privacy Policy
+          {t("terms")}
         </p>
       </div>
     </div>

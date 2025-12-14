@@ -2,6 +2,7 @@
 
 import { fetchProfilePicture, getContacts } from "@/lib/store";
 import { LANGUAGES, LanguageProfile } from "@/lib/types";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 
 interface ChatsProps {
@@ -30,6 +31,7 @@ interface ContactWithPic extends LanguageProfile {
 }
 
 export function Chats({ currentUser }: ChatsProps) {
+  const t = useTranslations('chats');
   const [contacts, setContacts] = useState<ContactWithPic[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -104,8 +106,8 @@ export function Chats({ currentUser }: ChatsProps) {
     <div className="flex flex-col h-full overflow-hidden bg-white">
       {/* Header */}
       <div className="px-4 py-3 border-b border-[#EBEBEB] shrink-0">
-        <h1 className="text-xl font-semibold text-[#222222]">Contacts</h1>
-        <p className="text-sm text-[#717171]">People you have connected with</p>
+        <h1 className="text-xl font-semibold text-[#222222]">{t('title')}</h1>
+        <p className="text-sm text-[#717171]">{t('noContactsDesc')}</p>
       </div>
 
       {/* Content */}
@@ -123,11 +125,10 @@ export function Chats({ currentUser }: ChatsProps) {
               <span className="text-4xl">💬</span>
             </div>
             <h3 className="font-semibold text-[#222222] text-lg mb-2">
-              No contacts yet
+              {t('noContacts')}
             </h3>
             <p className="text-[#717171] text-center text-sm max-w-xs">
-              Start chatting with language partners from the Search tab to add
-              them here
+              {t('noContactsDesc')}
             </p>
           </div>
         ) : (
