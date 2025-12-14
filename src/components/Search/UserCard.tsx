@@ -48,25 +48,23 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
 
   // Generate personalized intro message
   const getIntroMessage = (): string => {
+    const appLink = `https://world.org/mini-app?app_id=${process.env.NEXT_PUBLIC_APP_ID}`;
+
     // Find a language they speak that the current user is learning
     const targetLanguage = user.nativeLanguages.find((lang) =>
       currentUser?.learningLanguages.includes(lang)
     );
 
     if (targetLanguage) {
-      return `Hey! I'm from Lingua and would love to learn ${getLanguageFlag(
-        targetLanguage
-      )} with you!`;
+      return `Hey! I'm from Lingua and would love to learn ${getLanguageFlag(targetLanguage)} ${tLang(targetLanguage)} with you! ${appLink}`;
     }
 
     // Fallback: use their first native language
     if (user.nativeLanguages.length > 0) {
-      return `Hey! I'm from Lingua and would love to practice ${getLanguageFlag(
-        user.nativeLanguages[0]
-      )} with you!`;
+      return `Hey! I'm from Lingua and would love to practice ${getLanguageFlag(user.nativeLanguages[0])} ${tLang(user.nativeLanguages[0])} with you! ${appLink}`;
     }
 
-    return "Hey! I'm from Lingua and would love to practice languages with you!";
+    return `Hey! I'm from Lingua and would love to practice languages with you! ${appLink}`;
   };
 
   const handleConnect = async () => {
