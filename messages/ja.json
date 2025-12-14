@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "continue": "続ける",
+    "back": "戻る",
+    "search": "検索",
+    "settings": "設定"
+  },
+  "landing": {
+    "title": "Lingua",
+    "subtitle": "World Appで言語パートナーを見つけて一緒に練習しよう",
+    "feature1Title": "ネイティブと練習",
+    "feature1Desc": "学んでいる言語のスピーカーとチャット",
+    "feature2Title": "25以上の言語",
+    "feature2Desc": "スペイン語からスワヒリ語まで、あなたのパートナーを見つけよう",
+    "feature3Title": "認証済みの人間のみ",
+    "feature3Desc": "World IDが本物のつながりを保証",
+    "getStarted": "始める",
+    "connecting": "接続中...",
+    "terms": "続けることで、利用規約とプライバシーポリシーに同意します"
+  },
+  "home": {
+    "welcomeBack": "おかえりなさい、",
+    "findPartners": "練習する言語パートナーを見つけよう",
+    "settingUp": "プロフィールを設定中..."
+  },
+  "search": {
+    "searchLanguage": "言語を検索...",
+    "browseByLanguage": "言語で探す",
+    "searchResults": "検索結果",
+    "noLanguagesFound": "言語が見つかりません",
+    "partnersNearYou": "近くの言語パートナー",
+    "findingPartners": "言語パートナーを探しています...",
+    "wontTakeLong": "すぐに終わります",
+    "peopleFound": "{count}人見つかりました",
+    "noOneFound": "まだ見つかりません",
+    "noOneFoundDesc": "現在{language}を学んでいる人や話す人はいません。コミュニティを始める最初の人になりましょう！"
+  },
+  "userCard": {
+    "native": "ネイティブ",
+    "learning": "学習中",
+    "connect": "つながる",
+    "connecting": "接続中..."
+  },
+  "chats": {
+    "title": "チャット",
+    "noContacts": "連絡先がありません",
+    "noContactsDesc": "言語パートナーとつながってチャットを始めましょう",
+    "findPartners": "パートナーを探す"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "languages": "言語",
+    "speaks": "話せる",
+    "learning": "学習中",
+    "location": "場所",
+    "memberSince": "{date}から会員",
+    "editProfile": "プロフィールを編集",
+    "notifications": "通知",
+    "notificationsDesc": "誰かが練習したいときに通知を受け取る",
+    "language": "言語",
+    "languageDesc": "優先言語を選択",
+    "deleteAccount": "アカウントを削除"
+  },
+  "onboarding": {
+    "nameStep": {
+      "title": "お名前は何ですか？",
+      "placeholder": "名前を入力"
+    },
+    "locationStep": {
+      "title": "どこから来ましたか？",
+      "searchPlaceholder": "国を検索...",
+      "detectingLocation": "位置を検出中..."
+    },
+    "nativeLanguageStep": {
+      "title": "ネイティブに話せる言語は何ですか？",
+      "subtitle": "該当するものをすべて選択"
+    },
+    "learningLanguageStep": {
+      "title": "何語を学んでいますか？",
+      "subtitle": "該当するものをすべて選択"
+    },
+    "notificationStep": {
+      "title": "つながり続ける",
+      "subtitle": "言語パートナーがあなたと練習したいときに通知を受け取る",
+      "enable": "通知を有効にする",
+      "skip": "後で"
+    }
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "description": "お探しのページは存在しないか、移動されました。",
+    "goHome": "ホームへ"
+  }
+}

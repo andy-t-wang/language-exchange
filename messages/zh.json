@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "continue": "继续",
+    "back": "返回",
+    "search": "搜索",
+    "settings": "设置"
+  },
+  "landing": {
+    "title": "Lingua",
+    "subtitle": "在World App中找到语言伙伴，一起练习",
+    "feature1Title": "与母语者练习",
+    "feature1Desc": "与你正在学习的语言的母语者聊天",
+    "feature2Title": "超过25种语言",
+    "feature2Desc": "从西班牙语到斯瓦希里语，找到你的伙伴",
+    "feature3Title": "仅限认证用户",
+    "feature3Desc": "World ID确保真实的连接",
+    "getStarted": "开始使用",
+    "connecting": "连接中...",
+    "terms": "继续即表示您同意我们的条款和隐私政策"
+  },
+  "home": {
+    "welcomeBack": "欢迎回来，",
+    "findPartners": "找到语言伙伴一起练习",
+    "settingUp": "正在设置您的个人资料..."
+  },
+  "search": {
+    "searchLanguage": "搜索语言...",
+    "browseByLanguage": "按语言浏览",
+    "searchResults": "搜索结果",
+    "noLanguagesFound": "未找到语言",
+    "partnersNearYou": "附近的语言伙伴",
+    "findingPartners": "正在寻找语言伙伴...",
+    "wontTakeLong": "不会太久",
+    "peopleFound": "找到{count}人",
+    "noOneFound": "暂时没有找到",
+    "noOneFoundDesc": "目前没有人在学习或使用{language}。成为第一个开始社区的人！"
+  },
+  "userCard": {
+    "native": "母语",
+    "learning": "学习中",
+    "connect": "连接",
+    "connecting": "连接中..."
+  },
+  "chats": {
+    "title": "聊天",
+    "noContacts": "还没有联系人",
+    "noContactsDesc": "与语言伙伴连接以开始聊天",
+    "findPartners": "寻找伙伴"
+  },
+  "profile": {
+    "title": "个人资料",
+    "languages": "语言",
+    "speaks": "会说",
+    "learning": "正在学习",
+    "location": "位置",
+    "memberSince": "自{date}起成为会员",
+    "editProfile": "编辑资料",
+    "notifications": "通知",
+    "notificationsDesc": "当有人想练习时收到通知",
+    "language": "语言",
+    "languageDesc": "选择您的首选语言",
+    "deleteAccount": "删除账户"
+  },
+  "onboarding": {
+    "nameStep": {
+      "title": "你叫什么名字？",
+      "placeholder": "输入您的姓名"
+    },
+    "locationStep": {
+      "title": "你来自哪里？",
+      "searchPlaceholder": "搜索国家...",
+      "detectingLocation": "正在检测位置..."
+    },
+    "nativeLanguageStep": {
+      "title": "你的母语是什么？",
+      "subtitle": "选择所有适用的"
+    },
+    "learningLanguageStep": {
+      "title": "你在学习什么语言？",
+      "subtitle": "选择所有适用的"
+    },
+    "notificationStep": {
+      "title": "保持连接",
+      "subtitle": "当语言伙伴想与你练习时收到通知",
+      "enable": "启用通知",
+      "skip": "以后再说"
+    }
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "您要查找的页面不存在或已被移动。",
+    "goHome": "返回首页"
+  }
+}

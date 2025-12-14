@@ -3,6 +3,8 @@ import ClientProviders from '@/providers';
 import '@worldcoin/mini-apps-ui-kit-react/styles.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 import './globals.css';
 
 export const runtime = 'edge';
@@ -28,10 +30,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
-        <ClientProviders session={session}>{children}</ClientProviders>
+        <NextIntlClientProvider messages={messages}>
+          <ClientProviders session={session}>{children}</ClientProviders>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

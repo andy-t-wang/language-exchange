@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "save": "저장",
+    "cancel": "취소",
+    "continue": "계속",
+    "back": "뒤로",
+    "search": "검색",
+    "settings": "설정"
+  },
+  "landing": {
+    "title": "Lingua",
+    "subtitle": "World App에서 언어 파트너를 찾고 함께 연습하세요",
+    "feature1Title": "원어민과 연습",
+    "feature1Desc": "배우는 언어의 원어민과 채팅하세요",
+    "feature2Title": "25개 이상의 언어",
+    "feature2Desc": "스페인어부터 스와힐리어까지, 당신의 파트너를 찾으세요",
+    "feature3Title": "인증된 사람만",
+    "feature3Desc": "World ID가 진정한 연결을 보장합니다",
+    "getStarted": "시작하기",
+    "connecting": "연결 중...",
+    "terms": "계속하면 이용약관 및 개인정보 보호정책에 동의하는 것입니다"
+  },
+  "home": {
+    "welcomeBack": "다시 오신 것을 환영합니다,",
+    "findPartners": "함께 연습할 언어 파트너를 찾으세요",
+    "settingUp": "프로필 설정 중..."
+  },
+  "search": {
+    "searchLanguage": "언어 검색...",
+    "browseByLanguage": "언어별 찾아보기",
+    "searchResults": "검색 결과",
+    "noLanguagesFound": "언어를 찾을 수 없습니다",
+    "partnersNearYou": "근처의 언어 파트너",
+    "findingPartners": "언어 파트너 찾는 중...",
+    "wontTakeLong": "오래 걸리지 않습니다",
+    "peopleFound": "{count}명 발견",
+    "noOneFound": "아직 아무도 없습니다",
+    "noOneFoundDesc": "현재 {language}를 배우거나 사용하는 사람이 없습니다. 커뮤니티를 시작하는 첫 번째 사람이 되세요!"
+  },
+  "userCard": {
+    "native": "원어민",
+    "learning": "학습 중",
+    "connect": "연결",
+    "connecting": "연결 중..."
+  },
+  "chats": {
+    "title": "채팅",
+    "noContacts": "아직 연락처가 없습니다",
+    "noContactsDesc": "언어 파트너와 연결하여 채팅을 시작하세요",
+    "findPartners": "파트너 찾기"
+  },
+  "profile": {
+    "title": "프로필",
+    "languages": "언어",
+    "speaks": "사용 언어",
+    "learning": "학습 중",
+    "location": "위치",
+    "memberSince": "{date}부터 회원",
+    "editProfile": "프로필 편집",
+    "notifications": "알림",
+    "notificationsDesc": "누군가 연습하고 싶어할 때 알림 받기",
+    "language": "언어",
+    "languageDesc": "선호하는 언어 선택",
+    "deleteAccount": "계정 삭제"
+  },
+  "onboarding": {
+    "nameStep": {
+      "title": "이름이 무엇인가요?",
+      "placeholder": "이름을 입력하세요"
+    },
+    "locationStep": {
+      "title": "어디서 오셨나요?",
+      "searchPlaceholder": "국가 검색...",
+      "detectingLocation": "위치 감지 중..."
+    },
+    "nativeLanguageStep": {
+      "title": "어떤 언어를 원어민 수준으로 구사하나요?",
+      "subtitle": "해당되는 것을 모두 선택하세요"
+    },
+    "learningLanguageStep": {
+      "title": "어떤 언어를 배우고 있나요?",
+      "subtitle": "해당되는 것을 모두 선택하세요"
+    },
+    "notificationStep": {
+      "title": "연결 상태 유지",
+      "subtitle": "언어 파트너가 당신과 연습하고 싶어할 때 알림을 받으세요",
+      "enable": "알림 활성화",
+      "skip": "나중에"
+    }
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "찾으시는 페이지가 존재하지 않거나 이동되었습니다.",
+    "goHome": "홈으로"
+  }
+}

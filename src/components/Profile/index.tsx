@@ -2,6 +2,8 @@
 
 import { fetchProfilePicture, getCurrentUser, saveUser, setCurrentUser } from '@/lib/store';
 import { LANGUAGES, LanguageProfile } from '@/lib/types';
+import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 interface ProfileProps {
@@ -29,6 +31,8 @@ const getCountryFlag = (countryCode: string): string => {
 type EditMode = 'none' | 'native' | 'learning';
 
 export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
+  const t = useTranslations('profile');
+  const tCommon = useTranslations('common');
   const [profilePic, setProfilePic] = useState<string | null>(currentUser.profilePictureUrl || null);
   const [editMode, setEditMode] = useState<EditMode>('none');
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
@@ -168,8 +172,8 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
     <div className="flex flex-col h-full overflow-hidden bg-white">
       {/* Header */}
       <div className="px-4 py-3 border-b border-[#EBEBEB] shrink-0">
-        <h1 className="text-xl font-semibold text-[#222222]">Profile</h1>
-        <p className="text-sm text-[#717171]">Manage your language preferences</p>
+        <h1 className="text-xl font-semibold text-[#222222]">{t('title')}</h1>
+        <p className="text-sm text-[#717171]">{t('languages')}</p>
       </div>
 
       {/* Content */}
@@ -206,14 +210,14 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
           <div className="card-airbnb p-5">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="font-semibold text-[#222222]">Languages I Speak</h3>
-                <p className="text-sm text-[#717171]">Your native or fluent languages</p>
+                <h3 className="font-semibold text-[#222222]">{t('speaks')}</h3>
+                <p className="text-sm text-[#717171]">{t('languages')}</p>
               </div>
               <button
                 onClick={handleEditNative}
                 className="px-4 py-2 text-sm font-medium text-[#222222] border border-[#222222] rounded-lg hover:bg-[#F7F7F7] transition-colors"
               >
-                Edit
+                {t('editProfile')}
               </button>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -233,14 +237,14 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
           <div className="card-airbnb p-5">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="font-semibold text-[#222222]">Languages I&apos;m Learning</h3>
-                <p className="text-sm text-[#717171]">Languages you want to practice</p>
+                <h3 className="font-semibold text-[#222222]">{t('learning')}</h3>
+                <p className="text-sm text-[#717171]">{t('languages')}</p>
               </div>
               <button
                 onClick={handleEditLearning}
                 className="px-4 py-2 text-sm font-medium text-[#222222] border border-[#222222] rounded-lg hover:bg-[#F7F7F7] transition-colors"
               >
-                Edit
+                {t('editProfile')}
               </button>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -256,17 +260,26 @@ export function Profile({ currentUser, onUserUpdate }: ProfileProps) {
             </div>
           </div>
 
+          {/* Language switcher */}
+          <div className="card-airbnb p-5">
+            <div className="mb-4">
+              <h3 className="font-semibold text-[#222222]">{t('language')}</h3>
+              <p className="text-sm text-[#717171]">{t('languageDesc')}</p>
+            </div>
+            <LocaleSwitcher />
+          </div>
+
           {/* Stats card */}
           <div className="card-airbnb p-5">
-            <h3 className="font-semibold text-[#222222] mb-4">Your Stats</h3>
+            <h3 className="font-semibold text-[#222222] mb-4">{tCommon('settings')}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-[#F7F7F7] rounded-xl">
                 <p className="text-2xl font-bold text-[#222222]">{currentUser.nativeLanguages.length}</p>
-                <p className="text-sm text-[#717171]">Languages spoken</p>
+                <p className="text-sm text-[#717171]">{t('speaks')}</p>
               </div>
               <div className="text-center p-4 bg-[#F7F7F7] rounded-xl">
                 <p className="text-2xl font-bold text-[#222222]">{currentUser.learningLanguages.length}</p>
-                <p className="text-sm text-[#717171]">Learning</p>
+                <p className="text-sm text-[#717171]">{t('learning')}</p>
               </div>
             </div>
           </div>

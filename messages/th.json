@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "กำลังโหลด...",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "continue": "ดำเนินการต่อ",
+    "back": "ย้อนกลับ",
+    "search": "ค้นหา",
+    "settings": "การตั้งค่า"
+  },
+  "landing": {
+    "title": "Lingua",
+    "subtitle": "ค้นหาคู่ฝึกภาษาและฝึกฝนด้วยกันใน World App",
+    "feature1Title": "ฝึกกับเจ้าของภาษา",
+    "feature1Desc": "แชทกับผู้พูดภาษาที่คุณกำลังเรียน",
+    "feature2Title": "มากกว่า 25 ภาษา",
+    "feature2Desc": "ตั้งแต่สเปนถึงสวาฮิลี หาคู่ที่ใช่ของคุณ",
+    "feature3Title": "เฉพาะมนุษย์ที่ยืนยันแล้ว",
+    "feature3Desc": "World ID รับประกันการเชื่อมต่อที่แท้จริง",
+    "getStarted": "เริ่มต้นใช้งาน",
+    "connecting": "กำลังเชื่อมต่อ...",
+    "terms": "เมื่อดำเนินการต่อ คุณยอมรับข้อกำหนดและนโยบายความเป็นส่วนตัวของเรา"
+  },
+  "home": {
+    "welcomeBack": "ยินดีต้อนรับกลับ",
+    "findPartners": "ค้นหาคู่ฝึกภาษาเพื่อฝึกฝนด้วยกัน",
+    "settingUp": "กำลังตั้งค่าโปรไฟล์ของคุณ..."
+  },
+  "search": {
+    "searchLanguage": "ค้นหาภาษา...",
+    "browseByLanguage": "เรียกดูตามภาษา",
+    "searchResults": "ผลการค้นหา",
+    "noLanguagesFound": "ไม่พบภาษา",
+    "partnersNearYou": "คู่ฝึกภาษาใกล้คุณ",
+    "findingPartners": "กำลังค้นหาคู่ฝึกภาษา...",
+    "wontTakeLong": "จะไม่นานนัก",
+    "peopleFound": "พบ {count} คน",
+    "noOneFound": "ยังไม่พบใคร",
+    "noOneFoundDesc": "ยังไม่มีใครกำลังเรียนหรือพูด{language} เป็นคนแรกที่เริ่มต้นชุมชน!"
+  },
+  "userCard": {
+    "native": "ภาษาแม่",
+    "learning": "กำลังเรียน",
+    "connect": "เชื่อมต่อ",
+    "connecting": "กำลังเชื่อมต่อ..."
+  },
+  "chats": {
+    "title": "แชท",
+    "noContacts": "ยังไม่มีผู้ติดต่อ",
+    "noContactsDesc": "เชื่อมต่อกับคู่ฝึกภาษาเพื่อเริ่มแชท",
+    "findPartners": "ค้นหาคู่ฝึก"
+  },
+  "profile": {
+    "title": "โปรไฟล์",
+    "languages": "ภาษา",
+    "speaks": "พูด",
+    "learning": "กำลังเรียน",
+    "location": "ที่ตั้ง",
+    "memberSince": "สมาชิกตั้งแต่ {date}",
+    "editProfile": "แก้ไขโปรไฟล์",
+    "notifications": "การแจ้งเตือน",
+    "notificationsDesc": "รับการแจ้งเตือนเมื่อมีคนต้องการฝึกฝน",
+    "language": "ภาษา",
+    "languageDesc": "เลือกภาษาที่ต้องการ",
+    "deleteAccount": "ลบบัญชี"
+  },
+  "onboarding": {
+    "nameStep": {
+      "title": "คุณชื่ออะไร?",
+      "placeholder": "กรอกชื่อของคุณ"
+    },
+    "locationStep": {
+      "title": "คุณมาจากที่ไหน?",
+      "searchPlaceholder": "ค้นหาประเทศ...",
+      "detectingLocation": "กำลังตรวจจับตำแหน่ง..."
+    },
+    "nativeLanguageStep": {
+      "title": "คุณพูดภาษาอะไรเป็นภาษาแม่?",
+      "subtitle": "เลือกทั้งหมดที่ใช้"
+    },
+    "learningLanguageStep": {
+      "title": "คุณกำลังเรียนภาษาอะไร?",
+      "subtitle": "เลือกทั้งหมดที่ใช้"
+    },
+    "notificationStep": {
+      "title": "เชื่อมต่อตลอดเวลา",
+      "subtitle": "รับการแจ้งเตือนเมื่อคู่ฝึกภาษาต้องการฝึกฝนกับคุณ",
+      "enable": "เปิดการแจ้งเตือน",
+      "skip": "ไว้ทีหลัง"
+    }
+  },
+  "notFound": {
+    "title": "ไม่พบหน้า",
+    "description": "หน้าที่คุณกำลังมองหาไม่มีอยู่หรือถูกย้ายแล้ว",
+    "goHome": "ไปหน้าแรก"
+  }
+}

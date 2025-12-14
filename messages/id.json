@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "Memuat...",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "continue": "Lanjutkan",
+    "back": "Kembali",
+    "search": "Cari",
+    "settings": "Pengaturan"
+  },
+  "landing": {
+    "title": "Lingua",
+    "subtitle": "Temukan mitra bahasa dan berlatih bersama di World App",
+    "feature1Title": "Berlatih dengan penutur asli",
+    "feature1Desc": "Mengobrol dengan penutur bahasa yang sedang Anda pelajari",
+    "feature2Title": "25+ bahasa",
+    "feature2Desc": "Dari Spanyol hingga Swahili, temukan pasangan Anda",
+    "feature3Title": "Hanya manusia terverifikasi",
+    "feature3Desc": "World ID menjamin koneksi nyata",
+    "getStarted": "Mulai",
+    "connecting": "Menghubungkan...",
+    "terms": "Dengan melanjutkan, Anda menyetujui Syarat & Kebijakan Privasi kami"
+  },
+  "home": {
+    "welcomeBack": "Selamat datang kembali,",
+    "findPartners": "Temukan mitra bahasa untuk berlatih bersama",
+    "settingUp": "Menyiapkan profil Anda..."
+  },
+  "search": {
+    "searchLanguage": "Cari bahasa...",
+    "browseByLanguage": "Jelajahi berdasarkan Bahasa",
+    "searchResults": "Hasil Pencarian",
+    "noLanguagesFound": "Bahasa tidak ditemukan",
+    "partnersNearYou": "Mitra Bahasa di Dekat Anda",
+    "findingPartners": "Mencari mitra bahasa...",
+    "wontTakeLong": "Tidak akan lama",
+    "peopleFound": "{count} orang ditemukan",
+    "noOneFound": "Belum ada yang ditemukan",
+    "noOneFoundDesc": "Belum ada yang belajar atau berbicara {language}. Jadilah yang pertama memulai komunitas!"
+  },
+  "userCard": {
+    "native": "Asli",
+    "learning": "Belajar",
+    "connect": "Hubungkan",
+    "connecting": "Menghubungkan..."
+  },
+  "chats": {
+    "title": "Obrolan",
+    "noContacts": "Belum ada kontak",
+    "noContactsDesc": "Terhubung dengan mitra bahasa untuk mulai mengobrol",
+    "findPartners": "Temukan Mitra"
+  },
+  "profile": {
+    "title": "Profil",
+    "languages": "Bahasa",
+    "speaks": "Berbicara",
+    "learning": "Belajar",
+    "location": "Lokasi",
+    "memberSince": "Anggota sejak {date}",
+    "editProfile": "Edit Profil",
+    "notifications": "Notifikasi",
+    "notificationsDesc": "Terima notifikasi saat seseorang ingin berlatih",
+    "language": "Bahasa",
+    "languageDesc": "Pilih bahasa pilihan Anda",
+    "deleteAccount": "Hapus Akun"
+  },
+  "onboarding": {
+    "nameStep": {
+      "title": "Siapa nama Anda?",
+      "placeholder": "Masukkan nama Anda"
+    },
+    "locationStep": {
+      "title": "Dari mana Anda berasal?",
+      "searchPlaceholder": "Cari negara...",
+      "detectingLocation": "Mendeteksi lokasi..."
+    },
+    "nativeLanguageStep": {
+      "title": "Bahasa apa yang Anda kuasai secara native?",
+      "subtitle": "Pilih semua yang berlaku"
+    },
+    "learningLanguageStep": {
+      "title": "Bahasa apa yang sedang Anda pelajari?",
+      "subtitle": "Pilih semua yang berlaku"
+    },
+    "notificationStep": {
+      "title": "Tetap terhubung",
+      "subtitle": "Dapatkan notifikasi saat mitra bahasa ingin berlatih dengan Anda",
+      "enable": "Aktifkan notifikasi",
+      "skip": "Nanti saja"
+    }
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    "goHome": "Ke Beranda"
+  }
+}

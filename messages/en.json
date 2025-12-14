@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "search": "Search",
+    "settings": "Settings"
+  },
+  "landing": {
+    "title": "Lingua",
+    "subtitle": "Find language partners and practice together in World App",
+    "feature1Title": "Practice with natives",
+    "feature1Desc": "Chat with speakers of the language you're learning",
+    "feature2Title": "25+ languages",
+    "feature2Desc": "From Spanish to Swahili, find your match",
+    "feature3Title": "Verified humans only",
+    "feature3Desc": "World ID ensures real connections",
+    "getStarted": "Get started",
+    "connecting": "Connecting...",
+    "terms": "By continuing, you agree to our Terms & Privacy Policy"
+  },
+  "home": {
+    "welcomeBack": "Welcome back,",
+    "findPartners": "Find language partners to practice with",
+    "settingUp": "Setting up your profile..."
+  },
+  "search": {
+    "searchLanguage": "Search for a language...",
+    "browseByLanguage": "Browse by Language",
+    "searchResults": "Search Results",
+    "noLanguagesFound": "No languages found",
+    "partnersNearYou": "Language Partners Near You",
+    "findingPartners": "Finding language partners...",
+    "wontTakeLong": "This won't take long",
+    "peopleFound": "{count} {count, plural, one {person} other {people}} found",
+    "noOneFound": "No one found yet",
+    "noOneFoundDesc": "No one is currently learning or speaks {language}. Be the first to start a community!"
+  },
+  "userCard": {
+    "native": "Native",
+    "learning": "Learning",
+    "connect": "Connect",
+    "connecting": "Connecting..."
+  },
+  "chats": {
+    "title": "Chats",
+    "noContacts": "No contacts yet",
+    "noContactsDesc": "Connect with language partners to start chatting",
+    "findPartners": "Find Partners"
+  },
+  "profile": {
+    "title": "Profile",
+    "languages": "Languages",
+    "speaks": "Speaks",
+    "learning": "Learning",
+    "location": "Location",
+    "memberSince": "Member since {date}",
+    "editProfile": "Edit Profile",
+    "notifications": "Notifications",
+    "notificationsDesc": "Receive notifications when someone wants to practice",
+    "language": "Language",
+    "languageDesc": "Choose your preferred language",
+    "deleteAccount": "Delete Account"
+  },
+  "onboarding": {
+    "nameStep": {
+      "title": "What's your name?",
+      "placeholder": "Enter your name"
+    },
+    "locationStep": {
+      "title": "Where are you from?",
+      "searchPlaceholder": "Search countries...",
+      "detectingLocation": "Detecting location..."
+    },
+    "nativeLanguageStep": {
+      "title": "What languages do you speak natively?",
+      "subtitle": "Select all that apply"
+    },
+    "learningLanguageStep": {
+      "title": "What languages are you learning?",
+      "subtitle": "Select all that apply"
+    },
+    "notificationStep": {
+      "title": "Stay connected",
+      "subtitle": "Get notified when language partners want to practice with you",
+      "enable": "Enable notifications",
+      "skip": "Maybe later"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go to Home"
+  }
+}
