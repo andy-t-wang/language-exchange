@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "Chats",
+    "subtitle": "People you've connected with",
     "noContacts": "No contacts yet",
     "noContactsDesc": "Connect with language partners to start chatting",
     "findPartners": "Find Partners"

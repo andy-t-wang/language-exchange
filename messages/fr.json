@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "Discussions",
+    "subtitle": "Personnes avec qui vous êtes connecté",
     "noContacts": "Pas encore de contacts",
     "noContactsDesc": "Connectez-vous avec des partenaires linguistiques pour commencer à discuter",
     "findPartners": "Trouver des partenaires"

@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "채팅",
+    "subtitle": "연결된 사람들",
     "noContacts": "아직 연락처가 없습니다",
     "noContactsDesc": "언어 파트너와 연결하여 채팅을 시작하세요",
     "findPartners": "파트너 찾기"

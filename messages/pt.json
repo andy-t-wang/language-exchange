@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "Conversas",
+    "subtitle": "Pessoas com quem você se conectou",
     "noContacts": "Nenhum contato ainda",
     "noContactsDesc": "Conecte-se com parceiros de idiomas para começar a conversar",
     "findPartners": "Encontrar parceiros"

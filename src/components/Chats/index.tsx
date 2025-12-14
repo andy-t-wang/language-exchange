@@ -107,7 +107,7 @@ export function Chats({ currentUser }: ChatsProps) {
       {/* Header */}
       <div className="px-4 py-3 border-b border-[#EBEBEB] shrink-0">
         <h1 className="text-xl font-semibold text-[#222222]">{t('title')}</h1>
-        <p className="text-sm text-[#717171]">{t('noContactsDesc')}</p>
+        <p className="text-sm text-[#717171]">{t('subtitle')}</p>
       </div>
 
       {/* Content */}

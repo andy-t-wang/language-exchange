@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "Obrolan",
+    "subtitle": "Orang yang telah Anda hubungi",
     "noContacts": "Belum ada kontak",
     "noContactsDesc": "Terhubung dengan mitra bahasa untuk mulai mengobrol",
     "findPartners": "Temukan Mitra"

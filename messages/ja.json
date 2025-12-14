@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "チャット",
+    "subtitle": "つながった人たち",
     "noContacts": "連絡先がありません",
     "noContactsDesc": "言語パートナーとつながってチャットを始めましょう",
     "findPartners": "パートナーを探す"

@@ -46,6 +46,7 @@
   },
   "chats": {
     "title": "聊天",
+    "subtitle": "你连接的人",
     "noContacts": "还没有联系人",
     "noContactsDesc": "与语言伙伴连接以开始聊天",
     "findPartners": "寻找伙伴"
