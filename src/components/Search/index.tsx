@@ -173,23 +173,23 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
                   <h2 className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
                     {t("partnersNearYou")}
                   </h2>
-                  <div className="flex rounded-full bg-white border border-[#EBEBEB] p-0.5">
+                  <div className="inline-flex rounded-lg bg-white border border-[#EBEBEB] p-1 gap-1">
                     <button
                       onClick={() => setSortBy("best")}
-                      className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
                         sortBy === "best"
                           ? "bg-[#222222] text-white"
-                          : "text-[#717171] hover:text-[#222222]"
+                          : "text-[#717171] hover:text-[#222222] hover:bg-[#F7F7F7]"
                       }`}
                     >
                       {t("best")}
                     </button>
                     <button
                       onClick={() => setSortBy("newest")}
-                      className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
                         sortBy === "newest"
                           ? "bg-[#222222] text-white"
-                          : "text-[#717171] hover:text-[#222222]"
+                          : "text-[#717171] hover:text-[#222222] hover:bg-[#F7F7F7]"
                       }`}
                     >
                       {t("newest")}

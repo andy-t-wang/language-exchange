@@ -199,7 +199,8 @@ export async function getContacts(): Promise<LanguageProfile[]> {
 }
 
 // Save a contact (after successful chat)
-export async function saveContact(user: LanguageProfile): Promise<LanguageProfile | null> {
+// Returns the contact and whether it's a new contact (for notification purposes)
+export async function saveContact(user: LanguageProfile): Promise<{ contact: LanguageProfile | null; isNewContact: boolean }> {
   try {
     const response = await fetch('/api/contacts', {
       method: 'POST',
@@ -221,14 +222,14 @@ export async function saveContact(user: LanguageProfile): Promise<LanguageProfil
     if (!response.ok) {
       const error = await response.json();
       console.error('Error saving contact:', error);
-      return null;
+      return { contact: null, isNewContact: false };
     }
 
-    const { contact } = await response.json();
-    return dbContactToProfile(contact);
+    const { contact, isNewContact } = await response.json();
+    return { contact: dbContactToProfile(contact), isNewContact };
   } catch (error) {
     console.error('Error saving contact:', error);
-    return null;
+    return { contact: null, isNewContact: false };
   }
 }
 

@@ -55,6 +55,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if contact already exists
+    const { data: existingContact } = await supabase
+      .from('contacts')
+      .select('id')
+      .eq('user_wallet', userWallet)
+      .eq('contact_wallet', body.contact_wallet)
+      .single();
+
+    const isNewContact = !existingContact;
+
     // Store contact data as JSONB
     const contactData = {
       user_wallet: userWallet,
@@ -85,7 +95,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to save contact' }, { status: 500 });
     }
 
-    return NextResponse.json({ contact: data });
+    return NextResponse.json({ contact: data, isNewContact });
   } catch (error) {
     console.error('Error in POST /api/contacts:', error);
     return NextResponse.json(

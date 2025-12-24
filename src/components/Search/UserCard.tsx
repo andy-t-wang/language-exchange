@@ -73,12 +73,14 @@ export function UserCard({ user, currentUser, onConnect }: UserCardProps) {
     setIsConnecting(true);
 
     try {
-      // Save contact and send notification BEFORE opening chat
+      // Save contact BEFORE opening chat
       // (since chat takes user out of mini app, code after may not run)
-      await Promise.all([
-        saveContact(user),
-        sendChatNotification(user.walletAddress),
-      ]);
+      const { isNewContact } = await saveContact(user);
+
+      // Only send notification if this is a new contact (first time chatting)
+      if (isNewContact) {
+        await sendChatNotification(user.walletAddress);
+      }
 
       // Notify parent component
       onConnect(user);
