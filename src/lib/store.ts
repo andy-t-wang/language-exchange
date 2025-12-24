@@ -52,9 +52,10 @@ function dbUserToProfile(dbUser: DbUser): LanguageProfile {
 }
 
 // Fetch all users via API
-export async function getUsers(): Promise<LanguageProfile[]> {
+export async function getUsers(sortBy: 'best' | 'newest' = 'best'): Promise<LanguageProfile[]> {
   try {
-    const response = await fetch('/api/users');
+    const params = new URLSearchParams({ sort: sortBy });
+    const response = await fetch(`/api/users?${params}`);
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }

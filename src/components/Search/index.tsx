@@ -20,6 +20,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
   const [results, setResults] = useState<LanguageProfile[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<"best" | "newest">("best");
 
   const filteredLanguages = LANGUAGES.filter(
     (lang) =>
@@ -61,7 +62,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
   const loadFeaturedUsers = useCallback(async () => {
     setIsInitialLoading(true);
     try {
-      const allUsers = await getUsers();
+      const allUsers = await getUsers(sortBy);
       // Filter out current user and take first 6
       const featured = allUsers
         .filter((u) => u.walletAddress !== currentUser?.walletAddress)
@@ -73,7 +74,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
     } finally {
       setIsInitialLoading(false);
     }
-  }, [currentUser?.walletAddress]);
+  }, [currentUser?.walletAddress, sortBy]);
 
   useEffect(() => {
     if (!selectedLanguage) {
@@ -168,9 +169,33 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
             {/* Featured users section */}
             {!searchQuery && results.length > 0 && (
               <div className="mt-8">
-                <h2 className="text-xs font-semibold text-[#717171] uppercase tracking-wider mb-4">
-                  {t("partnersNearYou")}
-                </h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
+                    {t("partnersNearYou")}
+                  </h2>
+                  <div className="flex rounded-full bg-white border border-[#EBEBEB] p-0.5">
+                    <button
+                      onClick={() => setSortBy("best")}
+                      className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
+                        sortBy === "best"
+                          ? "bg-[#222222] text-white"
+                          : "text-[#717171] hover:text-[#222222]"
+                      }`}
+                    >
+                      {t("best")}
+                    </button>
+                    <button
+                      onClick={() => setSortBy("newest")}
+                      className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
+                        sortBy === "newest"
+                          ? "bg-[#222222] text-white"
+                          : "text-[#717171] hover:text-[#222222]"
+                      }`}
+                    >
+                      {t("newest")}
+                    </button>
+                  </div>
+                </div>
                 {isInitialLoading ? (
                   <div className="flex justify-center py-8">
                     <div className="relative w-12 h-12">

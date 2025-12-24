@@ -32,6 +32,8 @@
     "searchResults": "Résultats de recherche",
     "noLanguagesFound": "Aucune langue trouvée",
     "partnersNearYou": "Partenaires linguistiques près de vous",
+    "best": "Meilleurs",
+    "newest": "Récents",
     "findingPartners": "Recherche de partenaires linguistiques...",
     "wontTakeLong": "Ce ne sera pas long",
     "peopleFound": "{count} {count, plural, one {personne trouvée} other {personnes trouvées}}",

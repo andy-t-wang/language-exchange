@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const language = searchParams.get('language');
     const excludeWallet = searchParams.get('exclude');
+    const sortBy = searchParams.get('sort') || 'best';
 
     let query = supabase.from('users').select('*');
 
@@ -24,10 +25,17 @@ export async function GET(request: NextRequest) {
       query = query.neq('wallet_address', excludeWallet);
     }
 
-    // Sort by quality_score first (descending), then by created_at
-    const { data, error } = await query
-      .order('quality_score', { ascending: false })
-      .order('created_at', { ascending: false });
+    // Sort based on user preference
+    if (sortBy === 'newest') {
+      query = query.order('created_at', { ascending: false });
+    } else {
+      // Default: best - sort by quality_score first, then by created_at
+      query = query
+        .order('quality_score', { ascending: false })
+        .order('created_at', { ascending: false });
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('Error fetching users:', error);

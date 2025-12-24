@@ -32,6 +32,8 @@
     "searchResults": "Search Results",
     "noLanguagesFound": "No languages found",
     "partnersNearYou": "Language Partners Near You",
+    "best": "Best",
+    "newest": "Newest",
     "findingPartners": "Finding language partners...",
     "wontTakeLong": "This won't take long",
     "peopleFound": "{count} {count, plural, one {person} other {people}} found",
