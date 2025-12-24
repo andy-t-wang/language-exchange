@@ -242,14 +242,19 @@ export function Chats({ currentUser }: ChatsProps) {
                     <button
                       onClick={(e) => handleRate(e, contact.walletAddress, 1)}
                       disabled={isRatingThis}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                        myRating === 1
-                          ? 'bg-green-500 text-white shadow-md scale-105'
-                          : 'bg-[#F7F7F7] text-[#717171] hover:bg-green-50 hover:text-green-600'
-                      } ${isRatingThis ? 'opacity-50' : ''}`}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${isRatingThis ? 'opacity-50' : ''}`}
+                      style={myRating === 1 ? {
+                        backgroundColor: '#16a34a',
+                        color: '#ffffff',
+                        boxShadow: '0 4px 6px -1px rgba(22, 163, 74, 0.3)',
+                        transform: 'scale(1.05)'
+                      } : {
+                        backgroundColor: '#F7F7F7',
+                        color: '#717171'
+                      }}
                     >
                       {myRating === 1 ? (
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-4 h-4" fill="#ffffff" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       ) : (
@@ -262,14 +267,19 @@ export function Chats({ currentUser }: ChatsProps) {
                     <button
                       onClick={(e) => handleRate(e, contact.walletAddress, -1)}
                       disabled={isRatingThis}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                        myRating === -1
-                          ? 'bg-red-500 text-white shadow-md scale-105'
-                          : 'bg-[#F7F7F7] text-[#717171] hover:bg-red-50 hover:text-red-600'
-                      } ${isRatingThis ? 'opacity-50' : ''}`}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${isRatingThis ? 'opacity-50' : ''}`}
+                      style={myRating === -1 ? {
+                        backgroundColor: '#dc2626',
+                        color: '#ffffff',
+                        boxShadow: '0 4px 6px -1px rgba(220, 38, 38, 0.3)',
+                        transform: 'scale(1.05)'
+                      } : {
+                        backgroundColor: '#F7F7F7',
+                        color: '#717171'
+                      }}
                     >
                       {myRating === -1 ? (
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-4 h-4" fill="#ffffff" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       ) : (
