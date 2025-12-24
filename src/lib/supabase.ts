@@ -17,6 +17,16 @@ export interface DbUser {
   native_languages: string[];
   learning_languages: string[];
   notifications_enabled: boolean;
+  quality_score: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DbUserRating {
+  id: string;
+  rater_wallet: string;
+  rated_wallet: string;
+  rating: -1 | 1;
   created_at: string;
   updated_at: string;
 }

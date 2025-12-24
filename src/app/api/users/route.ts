@@ -24,7 +24,10 @@ export async function GET(request: NextRequest) {
       query = query.neq('wallet_address', excludeWallet);
     }
 
-    const { data, error } = await query.order('created_at', { ascending: false });
+    // Sort by quality_score first (descending), then by created_at
+    const { data, error } = await query
+      .order('quality_score', { ascending: false })
+      .order('created_at', { ascending: false });
 
     if (error) {
       console.error('Error fetching users:', error);

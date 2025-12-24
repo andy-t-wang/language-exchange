@@ -49,7 +49,10 @@
     "subtitle": "Pessoas com quem você se conectou",
     "noContacts": "Nenhum contato ainda",
     "noContactsDesc": "Conecte-se com parceiros de idiomas para começar a conversar",
-    "findPartners": "Encontrar parceiros"
+    "findPartners": "Encontrar parceiros",
+    "ratePartner": "Como foi este parceiro?",
+    "goodPartner": "Bom parceiro",
+    "notHelpful": "Não foi útil"
   },
   "profile": {
     "title": "Perfil",

@@ -49,7 +49,10 @@
     "subtitle": "你连接的人",
     "noContacts": "还没有联系人",
     "noContactsDesc": "与语言伙伴连接以开始聊天",
-    "findPartners": "寻找伙伴"
+    "findPartners": "寻找伙伴",
+    "ratePartner": "这位伙伴怎么样？",
+    "goodPartner": "好伙伴",
+    "notHelpful": "没有帮助"
   },
   "profile": {
     "title": "个人资料",

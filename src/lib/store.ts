@@ -47,6 +47,7 @@ function dbUserToProfile(dbUser: DbUser): LanguageProfile {
     learningLanguages: dbUser.learning_languages,
     createdAt: dbUser.created_at,
     notificationsEnabled: dbUser.notifications_enabled,
+    qualityScore: dbUser.quality_score || 0,
   };
 }
 
@@ -177,6 +178,7 @@ function dbContactToProfile(dbContact: DbContact): LanguageProfile {
     learningLanguages: data.learningLanguages,
     createdAt: dbContact.created_at,
     notificationsEnabled: false,
+    qualityScore: 0,
   };
 }
 
@@ -252,5 +254,72 @@ export async function sendChatNotification(walletAddress: string): Promise<boole
   } catch (error) {
     console.error('Error sending notification:', error);
     return false;
+  }
+}
+
+// Rate a user (thumbs up or thumbs down)
+export async function rateUser(
+  walletAddress: string,
+  rating: 1 | -1
+): Promise<{ success: boolean; myRating?: 1 | -1 | null }> {
+  try {
+    const response = await fetch('/api/ratings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        rated_wallet: walletAddress,
+        rating,
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Error rating user:', error);
+      return { success: false };
+    }
+
+    const data = await response.json();
+    return { success: true, myRating: data.myRating };
+  } catch (error) {
+    console.error('Error rating user:', error);
+    return { success: false };
+  }
+}
+
+// Get my rating for a specific user
+export async function getMyRating(walletAddress: string): Promise<1 | -1 | null> {
+  try {
+    const response = await fetch(`/api/ratings?rated_wallet=${walletAddress}`);
+    if (!response.ok) {
+      return null;
+    }
+    const data = await response.json();
+    return data.rating;
+  } catch (error) {
+    console.error('Error getting rating:', error);
+    return null;
+  }
+}
+
+// Get my ratings for multiple users at once
+export async function getMyRatings(walletAddresses: string[]): Promise<Record<string, 1 | -1>> {
+  try {
+    const response = await fetch('/api/ratings/batch', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ wallet_addresses: walletAddresses }),
+    });
+    if (!response.ok) {
+      return {};
+    }
+    const data = await response.json();
+    return data.ratings || {};
+  } catch (error) {
+    console.error('Error getting ratings:', error);
+    return {};
   }
 }

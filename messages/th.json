@@ -49,7 +49,10 @@
     "subtitle": "คนที่คุณเชื่อมต่อด้วย",
     "noContacts": "ยังไม่มีผู้ติดต่อ",
     "noContactsDesc": "เชื่อมต่อกับคู่ฝึกภาษาเพื่อเริ่มแชท",
-    "findPartners": "ค้นหาคู่ฝึก"
+    "findPartners": "ค้นหาคู่ฝึก",
+    "ratePartner": "คู่ฝึกนี้เป็นอย่างไร?",
+    "goodPartner": "คู่ฝึกดี",
+    "notHelpful": "ไม่เป็นประโยชน์"
   },
   "profile": {
     "title": "โปรไฟล์",

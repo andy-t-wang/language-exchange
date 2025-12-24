@@ -66,6 +66,7 @@ export default function Home() {
       learningLanguages: data.learningLanguages,
       createdAt: new Date().toISOString(),
       notificationsEnabled,
+      qualityScore: 0,
     };
 
     // Save to Supabase and localStorage

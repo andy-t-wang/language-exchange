@@ -49,7 +49,10 @@
     "subtitle": "Orang yang telah Anda hubungi",
     "noContacts": "Belum ada kontak",
     "noContactsDesc": "Terhubung dengan mitra bahasa untuk mulai mengobrol",
-    "findPartners": "Temukan Mitra"
+    "findPartners": "Temukan Mitra",
+    "ratePartner": "Bagaimana mitra ini?",
+    "goodPartner": "Mitra baik",
+    "notHelpful": "Tidak membantu"
   },
   "profile": {
     "title": "Profil",

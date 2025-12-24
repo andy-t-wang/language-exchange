@@ -49,7 +49,10 @@
     "subtitle": "つながった人たち",
     "noContacts": "連絡先がありません",
     "noContactsDesc": "言語パートナーとつながってチャットを始めましょう",
-    "findPartners": "パートナーを探す"
+    "findPartners": "パートナーを探す",
+    "ratePartner": "このパートナーはどうでしたか？",
+    "goodPartner": "良いパートナー",
+    "notHelpful": "役に立たなかった"
   },
   "profile": {
     "title": "プロフィール",

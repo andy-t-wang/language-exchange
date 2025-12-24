@@ -49,7 +49,10 @@
     "subtitle": "People you've connected with",
     "noContacts": "No contacts yet",
     "noContactsDesc": "Connect with language partners to start chatting",
-    "findPartners": "Find Partners"
+    "findPartners": "Find Partners",
+    "ratePartner": "How was this partner?",
+    "goodPartner": "Good partner",
+    "notHelpful": "Not helpful"
   },
   "profile": {
     "title": "Profile",

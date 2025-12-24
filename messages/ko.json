@@ -49,7 +49,10 @@
     "subtitle": "연결된 사람들",
     "noContacts": "아직 연락처가 없습니다",
     "noContactsDesc": "언어 파트너와 연결하여 채팅을 시작하세요",
-    "findPartners": "파트너 찾기"
+    "findPartners": "파트너 찾기",
+    "ratePartner": "이 파트너는 어땠나요?",
+    "goodPartner": "좋은 파트너",
+    "notHelpful": "도움이 안 됨"
   },
   "profile": {
     "title": "프로필",

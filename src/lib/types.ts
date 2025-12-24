@@ -12,6 +12,7 @@ export interface LanguageProfile {
   learningLanguages: string[];
   createdAt: string;
   notificationsEnabled: boolean;
+  qualityScore: number;
 }
 
 export interface OnboardingData {

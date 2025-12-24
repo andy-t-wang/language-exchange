@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchProfilePicture, getContacts } from "@/lib/store";
+import { fetchProfilePicture, getContacts, getMyRatings, rateUser } from "@/lib/store";
 import { LANGUAGES, LanguageProfile } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
@@ -32,6 +32,8 @@ export function Chats({ currentUser }: ChatsProps) {
   const [contacts, setContacts] = useState<ContactWithPic[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [myRatings, setMyRatings] = useState<Record<string, 1 | -1>>({});
+  const [ratingLoading, setRatingLoading] = useState<string | null>(null);
 
   const loadContacts = useCallback(async () => {
     // Only show loading spinner on first load
@@ -49,6 +51,13 @@ export function Chats({ currentUser }: ChatsProps) {
       setContacts(initialContacts);
       setHasLoaded(true);
       setIsLoading(false);
+
+      // Fetch existing ratings for contacts
+      if (contactsList.length > 0) {
+        const wallets = contactsList.map(c => c.walletAddress);
+        const ratings = await getMyRatings(wallets);
+        setMyRatings(ratings);
+      }
 
       // Then fetch missing profile pictures in background
       contactsList.forEach(async (contact, index) => {
@@ -79,6 +88,25 @@ export function Chats({ currentUser }: ChatsProps) {
       `worldapp://profile?username=${contact.username}&action=chat`,
       "_blank"
     );
+  };
+
+  const handleRate = async (e: React.MouseEvent, walletAddress: string, rating: 1 | -1) => {
+    e.stopPropagation(); // Prevent opening chat
+    setRatingLoading(walletAddress);
+
+    const result = await rateUser(walletAddress, rating);
+    if (result.success) {
+      setMyRatings(prev => {
+        const newRatings = { ...prev };
+        if (result.myRating === null || result.myRating === undefined) {
+          delete newRatings[walletAddress];
+        } else {
+          newRatings[walletAddress] = result.myRating;
+        }
+        return newRatings;
+      });
+    }
+    setRatingLoading(null);
   };
 
   // Find matching languages between current user and contact
@@ -132,60 +160,100 @@ export function Chats({ currentUser }: ChatsProps) {
           <div className="p-4 pb-20 space-y-3">
             {contacts.map((contact, index) => {
               const matchingLangs = getMatchingLanguages(contact);
+              const myRating = myRatings[contact.walletAddress];
+              const isRatingThis = ratingLoading === contact.walletAddress;
+
               return (
-                <button
+                <div
                   key={contact.walletAddress}
-                  onClick={() => handleOpenChat(contact)}
-                  className="w-full card-airbnb p-4 text-left hover:shadow-md transition-all animate-fade-in"
+                  className="card-airbnb p-4 animate-fade-in"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <div className="flex items-center gap-3">
-                    {/* Profile picture */}
-                    <div className="relative shrink-0">
-                      <div className="w-14 h-14 rounded-full overflow-hidden bg-[#F7F7F7]">
-                        {contact.profilePic ? (
-                          <img
-                            src={contact.profilePic}
-                            alt={contact.name}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-xl font-medium text-[#717171]">
-                            {contact.name.charAt(0).toUpperCase()}
+                  <button
+                    onClick={() => handleOpenChat(contact)}
+                    className="w-full text-left hover:opacity-90 transition-opacity"
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* Profile picture */}
+                      <div className="relative shrink-0">
+                        <div className="w-14 h-14 rounded-full overflow-hidden bg-[#F7F7F7]">
+                          {contact.profilePic ? (
+                            <img
+                              src={contact.profilePic}
+                              alt={contact.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-xl font-medium text-[#717171]">
+                              {contact.name.charAt(0).toUpperCase()}
+                            </div>
+                          )}
+                        </div>
+                        <span className="absolute -bottom-1 -right-1 text-lg drop-shadow-sm">
+                          {getCountryFlag(contact.countryCode)}
+                        </span>
+                      </div>
+
+                      {/* Contact info */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-[#222222] truncate">
+                          {contact.name}
+                        </h3>
+                        {matchingLangs.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1.5">
+                            {matchingLangs.slice(0, 3).map((lang) => (
+                              <span
+                                key={lang}
+                                className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#E8F8F5] text-babu text-xs font-medium rounded-full"
+                              >
+                                <span>{getLanguageFlag(lang)}</span>
+                                {tLang(lang)}
+                              </span>
+                            ))}
                           </div>
                         )}
                       </div>
-                      <span className="absolute -bottom-1 -right-1 text-lg drop-shadow-sm">
-                        {getCountryFlag(contact.countryCode)}
-                      </span>
-                    </div>
 
-                    {/* Contact info */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-[#222222] truncate">
-                        {contact.name}
-                      </h3>
-                      {matchingLangs.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-1.5">
-                          {matchingLangs.slice(0, 3).map((lang) => (
-                            <span
-                              key={lang}
-                              className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#E8F8F5] text-babu text-xs font-medium rounded-full"
-                            >
-                              <span>{getLanguageFlag(lang)}</span>
-                              {tLang(lang)}
-                            </span>
-                          ))}
-                        </div>
-                      )}
+                      {/* Chat button */}
+                      <div className="btn-airbnb px-4 py-2 text-sm shrink-0">
+                        Chat
+                      </div>
                     </div>
+                  </button>
 
-                    {/* Chat button */}
-                    <div className="btn-airbnb px-4 py-2 text-sm shrink-0">
-                      Chat
-                    </div>
+                  {/* Rating buttons */}
+                  <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#EBEBEB]">
+                    <span className="text-xs text-[#717171] mr-auto">{t('ratePartner')}</span>
+                    <button
+                      onClick={(e) => handleRate(e, contact.walletAddress, 1)}
+                      disabled={isRatingThis}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                        myRating === 1
+                          ? 'bg-green-100 text-green-700 ring-2 ring-green-500'
+                          : 'bg-[#F7F7F7] text-[#717171] hover:bg-green-50 hover:text-green-600'
+                      } ${isRatingThis ? 'opacity-50' : ''}`}
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                      </svg>
+                      {t('goodPartner')}
+                    </button>
+                    <button
+                      onClick={(e) => handleRate(e, contact.walletAddress, -1)}
+                      disabled={isRatingThis}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                        myRating === -1
+                          ? 'bg-red-100 text-red-700 ring-2 ring-red-500'
+                          : 'bg-[#F7F7F7] text-[#717171] hover:bg-red-50 hover:text-red-600'
+                      } ${isRatingThis ? 'opacity-50' : ''}`}
+                    >
+                      <svg className="w-4 h-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                      </svg>
+                      {t('notHelpful')}
+                    </button>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
