@@ -237,28 +237,26 @@ export function Chats({ currentUser }: ChatsProps) {
                   </div>
 
                   {/* Rating buttons */}
-                  <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#EBEBEB]">
+                  <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#EBEBEB]">
                     <span className="text-xs text-[#717171] mr-auto">{t('ratePartner')}</span>
                     <button
                       onClick={(e) => handleRate(e, contact.walletAddress, 1)}
                       disabled={isRatingThis}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${isRatingThis ? 'opacity-50' : ''}`}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap transition-all ${isRatingThis ? 'opacity-50' : ''}`}
                       style={myRating === 1 ? {
                         backgroundColor: '#16a34a',
-                        color: '#ffffff',
-                        boxShadow: '0 4px 6px -1px rgba(22, 163, 74, 0.3)',
-                        transform: 'scale(1.05)'
+                        color: '#ffffff'
                       } : {
                         backgroundColor: '#F7F7F7',
                         color: '#717171'
                       }}
                     >
                       {myRating === 1 ? (
-                        <svg className="w-4 h-4" fill="#ffffff" viewBox="0 0 20 20">
+                        <svg className="w-3 h-3 shrink-0" fill="#ffffff" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       ) : (
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                         </svg>
                       )}
@@ -267,23 +265,21 @@ export function Chats({ currentUser }: ChatsProps) {
                     <button
                       onClick={(e) => handleRate(e, contact.walletAddress, -1)}
                       disabled={isRatingThis}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${isRatingThis ? 'opacity-50' : ''}`}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap transition-all ${isRatingThis ? 'opacity-50' : ''}`}
                       style={myRating === -1 ? {
                         backgroundColor: '#dc2626',
-                        color: '#ffffff',
-                        boxShadow: '0 4px 6px -1px rgba(220, 38, 38, 0.3)',
-                        transform: 'scale(1.05)'
+                        color: '#ffffff'
                       } : {
                         backgroundColor: '#F7F7F7',
                         color: '#717171'
                       }}
                     >
                       {myRating === -1 ? (
-                        <svg className="w-4 h-4" fill="#ffffff" viewBox="0 0 20 20">
+                        <svg className="w-3 h-3 shrink-0" fill="#ffffff" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       ) : (
-                        <svg className="w-4 h-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-3 h-3 shrink-0 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                         </svg>
                       )}
