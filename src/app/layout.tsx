@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import Script from 'next/script';
 import './globals.css';
 
 export const runtime = 'edge';
@@ -44,6 +45,13 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ClientProviders session={session}>{children}</ClientProviders>
         </NextIntlClientProvider>
+        {/* Cloudflare Web Analytics */}
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "d5358782b9814bd0a52e543f31e9cb97"}'
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
