@@ -1,6 +1,11 @@
 "use client";
 
-import { fetchProfilePicture, getContacts, getMyRatings, rateUser } from "@/lib/store";
+import {
+  fetchProfilePicture,
+  getContacts,
+  getMyRatings,
+  rateUser,
+} from "@/lib/store";
 import { LANGUAGES, LanguageProfile } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
@@ -27,8 +32,8 @@ interface ContactWithPic extends LanguageProfile {
 }
 
 export function Chats({ currentUser }: ChatsProps) {
-  const t = useTranslations('chats');
-  const tLang = useTranslations('languages');
+  const t = useTranslations("chats");
+  const tLang = useTranslations("languages");
   const [contacts, setContacts] = useState<ContactWithPic[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -55,7 +60,7 @@ export function Chats({ currentUser }: ChatsProps) {
 
       // Fetch existing ratings for contacts (only once)
       if (contactsList.length > 0 && !ratingsLoaded) {
-        const wallets = contactsList.map(c => c.walletAddress);
+        const wallets = contactsList.map((c) => c.walletAddress);
         const ratings = await getMyRatings(wallets);
         setMyRatings(ratings);
         setRatingsLoaded(true);
@@ -102,13 +107,17 @@ export function Chats({ currentUser }: ChatsProps) {
     );
   };
 
-  const handleRate = async (e: React.MouseEvent, walletAddress: string, rating: 1 | -1) => {
+  const handleRate = async (
+    e: React.MouseEvent,
+    walletAddress: string,
+    rating: 1 | -1
+  ) => {
     e.stopPropagation(); // Prevent opening chat
     setRatingLoading(walletAddress);
 
     const result = await rateUser(walletAddress, rating);
     if (result.success) {
-      setMyRatings(prev => {
+      setMyRatings((prev) => {
         const newRatings = { ...prev };
         if (result.myRating === null || result.myRating === undefined) {
           delete newRatings[walletAddress];
@@ -143,8 +152,8 @@ export function Chats({ currentUser }: ChatsProps) {
     <div className="flex flex-col h-full overflow-hidden bg-white">
       {/* Header */}
       <div className="px-4 py-3 border-b border-[#EBEBEB] shrink-0">
-        <h1 className="text-xl font-semibold text-[#222222]">{t('title')}</h1>
-        <p className="text-sm text-[#717171]">{t('subtitle')}</p>
+        <h1 className="text-xl font-semibold text-[#222222]">{t("title")}</h1>
+        <p className="text-sm text-[#717171]">{t("subtitle")}</p>
       </div>
 
       {/* Content */}
@@ -162,10 +171,10 @@ export function Chats({ currentUser }: ChatsProps) {
               <span className="text-4xl">💬</span>
             </div>
             <h3 className="font-semibold text-[#222222] text-lg mb-2">
-              {t('noContacts')}
+              {t("noContacts")}
             </h3>
             <p className="text-[#717171] text-center text-sm max-w-xs">
-              {t('noContactsDesc')}
+              {t("noContactsDesc")}
             </p>
           </div>
         ) : (
@@ -238,52 +247,102 @@ export function Chats({ currentUser }: ChatsProps) {
 
                   {/* Rating buttons */}
                   <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#EBEBEB]">
-                    <span className="text-xs text-[#717171] mr-auto">{t('ratePartner')}</span>
+                    <span className="text-xs text-[#717171] mr-auto">
+                      {t("ratePartner")}
+                    </span>
                     <button
                       onClick={(e) => handleRate(e, contact.walletAddress, 1)}
                       disabled={isRatingThis}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap transition-all ${isRatingThis ? 'opacity-50' : ''}`}
-                      style={myRating === 1 ? {
-                        backgroundColor: '#16a34a',
-                        color: '#ffffff'
-                      } : {
-                        backgroundColor: '#F7F7F7',
-                        color: '#717171'
-                      }}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] whitespace-nowrap transition-all ${
+                        isRatingThis ? "opacity-50" : ""
+                      }`}
+                      style={
+                        myRating === 1
+                          ? {
+                              backgroundColor: "#16a34a",
+                              color: "#ffffff",
+                            }
+                          : {
+                              backgroundColor: "#F7F7F7",
+                              color: "#717171",
+                            }
+                      }
                     >
                       {myRating === 1 ? (
-                        <svg className="w-3 h-3 shrink-0" fill="#ffffff" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        <svg
+                          className="w-3 h-3 shrink-0"
+                          fill="#ffffff"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       ) : (
-                        <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                        <svg
+                          className="w-3 h-3 shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                          />
                         </svg>
                       )}
-                      {t('goodPartner')}
+                      {t("goodPartner")}
                     </button>
                     <button
                       onClick={(e) => handleRate(e, contact.walletAddress, -1)}
                       disabled={isRatingThis}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap transition-all ${isRatingThis ? 'opacity-50' : ''}`}
-                      style={myRating === -1 ? {
-                        backgroundColor: '#dc2626',
-                        color: '#ffffff'
-                      } : {
-                        backgroundColor: '#F7F7F7',
-                        color: '#717171'
-                      }}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] whitespace-nowrap transition-all ${
+                        isRatingThis ? "opacity-50" : ""
+                      }`}
+                      style={
+                        myRating === -1
+                          ? {
+                              backgroundColor: "#dc2626",
+                              color: "#ffffff",
+                            }
+                          : {
+                              backgroundColor: "#F7F7F7",
+                              color: "#717171",
+                            }
+                      }
                     >
                       {myRating === -1 ? (
-                        <svg className="w-3 h-3 shrink-0" fill="#ffffff" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        <svg
+                          className="w-3 h-3 shrink-0"
+                          fill="#ffffff"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       ) : (
-                        <svg className="w-3 h-3 shrink-0 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                        <svg
+                          className="w-3 h-3 shrink-0 rotate-180"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                          />
                         </svg>
                       )}
-                      {t('notHelpful')}
+                      {t("notHelpful")}
                     </button>
                   </div>
                 </div>
