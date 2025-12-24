@@ -1,7 +1,7 @@
 'use client';
 
 import { Chats } from '@/components/Chats';
-import { NavTab, subscribeToTabChange } from '@/components/Navigation';
+import { NavTab, subscribeToTabChange, setActiveTab as setNavActiveTab } from '@/components/Navigation';
 import { OnboardingFlow } from '@/components/Onboarding';
 import { Profile } from '@/components/Profile';
 import { Search } from '@/components/Search';
@@ -16,11 +16,13 @@ import {
 import { LanguageProfile, OnboardingData } from '@/lib/types';
 import { signOut, useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
   const t = useTranslations('home');
   const { data: session } = useSession();
+  const searchParams = useSearchParams();
   const [isOnboarded, setIsOnboarded] = useState<boolean | null>(null);
   const [currentUser, setCurrentUserState] = useState<LanguageProfile | null>(null);
   const [activeTab, setActiveTab] = useState<NavTab>('search');
@@ -28,6 +30,13 @@ export default function Home() {
   const [currentUserPic, setCurrentUserPic] = useState<string | null>(null);
 
   useEffect(() => {
+    // Check for tab parameter in URL (for deep linking from notifications)
+    const tabParam = searchParams.get('tab');
+    if (tabParam && ['search', 'chats', 'profile'].includes(tabParam)) {
+      setActiveTab(tabParam as NavTab);
+      setNavActiveTab(tabParam as NavTab);
+    }
+
     // Check if user has completed onboarding
     const onboarded = hasCompletedOnboarding();
     setIsOnboarded(onboarded);
@@ -46,7 +55,7 @@ export default function Home() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [searchParams]);
 
   const handleOnboardingComplete = async (
     data: OnboardingData,

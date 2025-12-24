@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       wallet_addresses: [body.wallet_address],
       title: '💬 New Lingua message!',
       message: `${senderName} wants to practice languages with you! Check your message requests in World Chat.`,
-      mini_app_path: `worldapp://mini-app?app_id=${appId}&path=${encodeURIComponent('/chats')}`,
+      mini_app_path: `worldapp://mini-app?app_id=${appId}&path=${encodeURIComponent('/home?tab=chats')}`,
     };
 
     const response = await fetch(WORLD_NOTIFICATION_URL, {
