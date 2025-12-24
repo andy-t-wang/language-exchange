@@ -180,7 +180,7 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {results.slice(0, 10).map((user) => (
+                    {results.slice(0, 12).map((user) => (
                       <UserCard
                         key={user.id}
                         user={user}
