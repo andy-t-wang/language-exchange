@@ -63,10 +63,10 @@ export function Search({ onUserConnect, currentUser }: SearchProps) {
     setIsInitialLoading(true);
     try {
       const allUsers = await getUsers(sortBy);
-      // Filter out current user and take first 6
+      // Filter out current user and take first 12
       const featured = allUsers
         .filter((u) => u.walletAddress !== currentUser?.walletAddress)
-        .slice(0, 6);
+        .slice(0, 12);
       setResults(featured);
     } catch (error) {
       console.error("Error loading users:", error);
