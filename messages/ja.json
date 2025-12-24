@@ -54,7 +54,8 @@
     "findPartners": "パートナーを探す",
     "ratePartner": "このパートナーはどうでしたか？",
     "goodPartner": "良いパートナー",
-    "notHelpful": "役に立たなかった"
+    "notHelpful": "役に立たなかった",
+    "reachedOut": "あなたに連絡しました"
   },
   "profile": {
     "title": "プロフィール",

@@ -217,9 +217,16 @@ export function Chats({ currentUser }: ChatsProps) {
 
                       {/* Contact info */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-[#222222] truncate">
-                          {contact.name}
-                        </h3>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold text-[#222222] truncate">
+                            {contact.name}
+                          </h3>
+                          {contact.initiatedByThem && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFF0ED] text-rausch text-xs font-medium rounded-full shrink-0">
+                              {t("reachedOut")}
+                            </span>
+                          )}
+                        </div>
                         {matchingLangs.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-1.5">
                             {matchingLangs.slice(0, 3).map((lang) => (

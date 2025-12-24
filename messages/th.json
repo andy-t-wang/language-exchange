@@ -54,7 +54,8 @@
     "findPartners": "ค้นหาคู่ฝึก",
     "ratePartner": "คู่ฝึกนี้เป็นอย่างไร?",
     "goodPartner": "คู่ฝึกดี",
-    "notHelpful": "ไม่เป็นประโยชน์"
+    "notHelpful": "ไม่เป็นประโยชน์",
+    "reachedOut": "ติดต่อคุณ"
   },
   "profile": {
     "title": "โปรไฟล์",

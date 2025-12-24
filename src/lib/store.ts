@@ -165,7 +165,7 @@ export function clearCurrentUser(): void {
 }
 
 // Convert database contact to app profile format
-function dbContactToProfile(dbContact: DbContact): LanguageProfile {
+function dbContactToProfile(dbContact: DbContact & { initiated_by_them?: boolean }): LanguageProfile {
   const data = dbContact.contact_data;
   return {
     id: dbContact.id,
@@ -180,6 +180,7 @@ function dbContactToProfile(dbContact: DbContact): LanguageProfile {
     createdAt: dbContact.created_at,
     notificationsEnabled: false,
     qualityScore: 0,
+    initiatedByThem: dbContact.initiated_by_them,
   };
 }
 

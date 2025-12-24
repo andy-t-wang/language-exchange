@@ -54,7 +54,8 @@
     "findPartners": "파트너 찾기",
     "ratePartner": "이 파트너는 어땠나요?",
     "goodPartner": "좋은 파트너",
-    "notHelpful": "도움이 안 됨"
+    "notHelpful": "도움이 안 됨",
+    "reachedOut": "먼저 연락함"
   },
   "profile": {
     "title": "프로필",

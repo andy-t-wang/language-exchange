@@ -13,6 +13,7 @@ export interface LanguageProfile {
   createdAt: string;
   notificationsEnabled: boolean;
   qualityScore: number;
+  initiatedByThem?: boolean; // True if this contact reached out to you first
 }
 
 export interface OnboardingData {
