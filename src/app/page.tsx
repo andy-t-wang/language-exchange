@@ -2,14 +2,25 @@
 
 import { walletAuth } from "@/auth/wallet";
 import { useMiniKit } from "minikit-js-dev-preview/minikit-provider";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const t = useTranslations("landing");
   const [isPending, setIsPending] = useState(false);
   const { isInstalled } = useMiniKit();
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const hasAttemptedAuth = useRef(false);
+
+  // If already authenticated, redirect to home
+  useEffect(() => {
+    if (status === "authenticated" && session) {
+      router.replace("/home");
+    }
+  }, [status, session, router]);
 
   const handleLogin = useCallback(async () => {
     if (!isInstalled || isPending) {
@@ -24,9 +35,9 @@ export default function Home() {
     }
   }, [isInstalled, isPending]);
 
-  // Auto-trigger wallet auth when MiniKit is installed
+  // Auto-trigger wallet auth when MiniKit is installed (only if not already authenticated)
   useEffect(() => {
-    if (isInstalled && !hasAttemptedAuth.current) {
+    if (isInstalled && !hasAttemptedAuth.current && status === "unauthenticated") {
       hasAttemptedAuth.current = true;
       setIsPending(true);
       walletAuth().catch((error) => {
@@ -34,7 +45,24 @@ export default function Home() {
         setIsPending(false);
       });
     }
-  }, [isInstalled]);
+  }, [isInstalled, status]);
+
+  // Show loading while checking session or redirecting
+  if (status === "loading" || status === "authenticated") {
+    return (
+      <div className="min-h-dvh bg-white flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-rausch to-arches flex items-center justify-center shadow-lg">
+            <span className="text-3xl">🌍</span>
+          </div>
+          <div className="relative w-8 h-8">
+            <div className="absolute inset-0 rounded-full border-3 border-[#EBEBEB]" />
+            <div className="absolute inset-0 rounded-full border-3 border-transparent border-t-rausch animate-spin" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-dvh bg-white flex flex-col">
