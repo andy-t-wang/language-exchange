@@ -22,6 +22,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Lingua',
   description: 'Find language partners and practice together in World App',
+  openGraph: {
+    title: 'Lingua',
+    description: 'Find language partners and practice together in World App',
+    images: ['/og.png'],
+  },
 };
 
 export default async function RootLayout({
