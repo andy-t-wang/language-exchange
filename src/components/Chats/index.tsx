@@ -33,6 +33,7 @@ export function Chats({ currentUser }: ChatsProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [myRatings, setMyRatings] = useState<Record<string, 1 | -1>>({});
+  const [ratingsLoaded, setRatingsLoaded] = useState(false);
   const [ratingLoading, setRatingLoading] = useState<string | null>(null);
 
   const loadContacts = useCallback(async () => {
@@ -52,11 +53,12 @@ export function Chats({ currentUser }: ChatsProps) {
       setHasLoaded(true);
       setIsLoading(false);
 
-      // Fetch existing ratings for contacts
-      if (contactsList.length > 0) {
+      // Fetch existing ratings for contacts (only once)
+      if (contactsList.length > 0 && !ratingsLoaded) {
         const wallets = contactsList.map(c => c.walletAddress);
         const ratings = await getMyRatings(wallets);
         setMyRatings(ratings);
+        setRatingsLoaded(true);
       }
 
       // Then fetch missing profile pictures in background
@@ -74,16 +76,26 @@ export function Chats({ currentUser }: ChatsProps) {
       console.error("Error loading contacts:", error);
       setIsLoading(false);
     }
-  }, [hasLoaded]);
+  }, [hasLoaded, ratingsLoaded]);
 
   useEffect(() => {
     loadContacts();
   }, [loadContacts]);
 
+  const handleOpenProfile = (contact: ContactWithPic) => {
+    if (!contact.username) return;
+
+    // Open World App profile
+    window.open(
+      `https://world.org/profile?username=${contact.username}`,
+      "_blank"
+    );
+  };
+
   const handleOpenChat = (contact: ContactWithPic) => {
     if (!contact.username) return;
 
-    // Open World App profile with chat action
+    // Open World App chat
     window.open(
       `worldapp://profile?username=${contact.username}&action=chat`,
       "_blank"
@@ -169,12 +181,12 @@ export function Chats({ currentUser }: ChatsProps) {
                   className="card-airbnb p-4 animate-fade-in"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <button
-                    onClick={() => handleOpenChat(contact)}
-                    className="w-full text-left hover:opacity-90 transition-opacity"
-                  >
-                    <div className="flex items-center gap-3">
-                      {/* Profile picture */}
+                  <div className="flex items-center gap-3">
+                    {/* Profile picture & info - clickable to open profile */}
+                    <button
+                      onClick={() => handleOpenProfile(contact)}
+                      className="flex items-center gap-3 flex-1 min-w-0 text-left hover:opacity-80 transition-opacity"
+                    >
                       <div className="relative shrink-0">
                         <div className="w-14 h-14 rounded-full overflow-hidden bg-[#F7F7F7]">
                           {contact.profilePic ? (
@@ -213,13 +225,16 @@ export function Chats({ currentUser }: ChatsProps) {
                           </div>
                         )}
                       </div>
+                    </button>
 
-                      {/* Chat button */}
-                      <div className="btn-airbnb px-4 py-2 text-sm shrink-0">
-                        Chat
-                      </div>
-                    </div>
-                  </button>
+                    {/* Chat button - separate action */}
+                    <button
+                      onClick={() => handleOpenChat(contact)}
+                      className="btn-airbnb px-4 py-2 text-sm shrink-0"
+                    >
+                      Chat
+                    </button>
+                  </div>
 
                   {/* Rating buttons */}
                   <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#EBEBEB]">
