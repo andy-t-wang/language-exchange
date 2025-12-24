@@ -68,7 +68,8 @@
     "notificationsDesc": "誰かが練習したいときに通知を受け取る",
     "language": "言語",
     "languageDesc": "優先言語を選択",
-    "deleteAccount": "アカウントを削除"
+    "deleteAccount": "アカウントを削除",
+    "yourRating": "他のユーザーからの評価"
   },
   "onboarding": {
     "nameStep": {

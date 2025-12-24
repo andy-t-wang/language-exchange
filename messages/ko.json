@@ -68,7 +68,8 @@
     "notificationsDesc": "누군가 연습하고 싶어할 때 알림 받기",
     "language": "언어",
     "languageDesc": "선호하는 언어 선택",
-    "deleteAccount": "계정 삭제"
+    "deleteAccount": "계정 삭제",
+    "yourRating": "다른 사용자로부터의 평점"
   },
   "onboarding": {
     "nameStep": {

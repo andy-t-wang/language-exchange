@@ -68,7 +68,8 @@
     "notificationsDesc": "Receba notificações quando alguém quiser praticar",
     "language": "Idioma",
     "languageDesc": "Escolha seu idioma preferido",
-    "deleteAccount": "Excluir conta"
+    "deleteAccount": "Excluir conta",
+    "yourRating": "Sua avaliação de outros usuários"
   },
   "onboarding": {
     "nameStep": {

@@ -68,7 +68,8 @@
     "notificationsDesc": "รับการแจ้งเตือนเมื่อมีคนต้องการฝึกฝน",
     "language": "ภาษา",
     "languageDesc": "เลือกภาษาที่ต้องการ",
-    "deleteAccount": "ลบบัญชี"
+    "deleteAccount": "ลบบัญชี",
+    "yourRating": "คะแนนของคุณจากผู้ใช้อื่น"
   },
   "onboarding": {
     "nameStep": {

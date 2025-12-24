@@ -68,7 +68,8 @@
     "notificationsDesc": "Terima notifikasi saat seseorang ingin berlatih",
     "language": "Bahasa",
     "languageDesc": "Pilih bahasa pilihan Anda",
-    "deleteAccount": "Hapus Akun"
+    "deleteAccount": "Hapus Akun",
+    "yourRating": "Penilaian Anda dari pengguna lain"
   },
   "onboarding": {
     "nameStep": {

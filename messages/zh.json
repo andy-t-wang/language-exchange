@@ -68,7 +68,8 @@
     "notificationsDesc": "当有人想练习时收到通知",
     "language": "语言",
     "languageDesc": "选择您的首选语言",
-    "deleteAccount": "删除账户"
+    "deleteAccount": "删除账户",
+    "yourRating": "其他用户对您的评分"
   },
   "onboarding": {
     "nameStep": {
